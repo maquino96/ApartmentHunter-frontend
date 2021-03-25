@@ -35,4 +35,8 @@
   to {
     transform: rotate(360deg);
   }
-}
+} 
+
+/* .ui { 
+  max-height: 100% !important; 
+} */
