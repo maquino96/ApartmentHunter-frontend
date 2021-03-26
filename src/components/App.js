@@ -3,14 +3,17 @@ import {useState, useEffect} from 'react'
 import './App.css';
 import LoginForm from './LoginForm';
 import ListingsPage from './ListingsPage';
-import { Container } from "semantic-ui-react";
+// import { Container } from "semantic-ui-react";
+import { Switch, Route } from 'react-router-dom'
+import ListingDetail from './ListingDetail';
+
 
 
 function App() {
 
   const [listings, setListings] = useState([])
 
-  useEffect(() => { 
+   useEffect(() => { 
 
     fetch("https://realtor.p.rapidapi.com/properties/list-for-rent?state_code=NY&limit=25&city=New%20York%20City&offset=0&postal_code=10010&sort=relevance", {
 	  method: "GET",
@@ -31,11 +34,24 @@ function App() {
   }, [])
   return (
     <div className="App">
-      <Container>
-      <h1>TEST</h1>
-      <LoginForm/>
-      <ListingsPage listings={listings}/>
-      </Container>
+
+      <Switch>
+        <h1>TEST</h1>
+          <Route path='/login'>
+            <LoginForm/>
+          </Route>
+          <Route path='/listings/:id'>
+            <ListingDetail/>
+          </Route>
+          <Route exact path='/listings'>
+            <ListingsPage listings={listings}/>
+          </Route>
+          <Route path='*'>
+            404 NOT FOUND
+          </Route>
+      </Switch>
+
+      
     </div>
   );
 }

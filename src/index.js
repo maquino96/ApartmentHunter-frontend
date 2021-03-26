@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { HashRouter } from 'react-router-dom'
 import './index.css';
 import App from './components/App';
 import 'semantic-ui-css/semantic.min.css'
 // import reportWebVitals from './components/reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <HashRouter>
     <App />
-  </React.StrictMode>,
+  </HashRouter>,
   document.getElementById('root')
 );
 
