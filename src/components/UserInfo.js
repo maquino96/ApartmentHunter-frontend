@@ -1,7 +1,9 @@
 import React from "react";
 import { Button, Card, Image, Icon } from "semantic-ui-react";
 
-const UserInfo = ({user}) => {
+
+const UserInfo = ({user, handleLogout}) => {
+  
   return (
     <Card>
       <Card.Content>
@@ -19,7 +21,7 @@ const UserInfo = ({user}) => {
       </Card.Content>
       <Card.Content extra>
           <Button.Group vertical>
-            <Button basic color='black' animated>
+            <Button basic color='black' animated onClick={handleLogout}>
               <Button.Content visible>Log Out</Button.Content>
               <Button.Content hidden>
                 <Icon name="log out" />

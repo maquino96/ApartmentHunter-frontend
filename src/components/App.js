@@ -4,7 +4,7 @@ import './App.css';
 import LoginForm from './LoginForm';
 import ListingsPage from './ListingsPage';
 import { Container } from "semantic-ui-react";
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, useHistory } from 'react-router-dom'
 import ListingDetail from './ListingDetail';
 
 
@@ -14,6 +14,7 @@ function App() {
   const [listings, setListings] = useState([])
   const [user, setUser] = useState({})
   const [listingSpotlight, setListingSpotlight] = useState({})
+  let history = useHistory()
 
    useEffect(() => { 
 
@@ -33,6 +34,11 @@ function App() {
       });
   }, [])
 
+  const handleLogout = () => {
+    setUser({})
+    history.push('/login')
+  }
+
   // const handleCardClick = () => {
     
   // }
@@ -50,7 +56,12 @@ function App() {
             <ListingDetail listingSpotlight={listingSpotlight}/>
           </Route>
           <Route exact path='/listings'>
-            <ListingsPage user={user} listings={listings} setListingSpotlight={setListingSpotlight}/>
+            <ListingsPage 
+              user={user} 
+              listings={listings} 
+              setListingSpotlight={setListingSpotlight}
+              handleLogout={handleLogout}
+              />
           </Route>
           <Route exact path="/">
             <h1>Please login or sign up</h1>

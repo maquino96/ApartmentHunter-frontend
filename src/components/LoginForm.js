@@ -3,7 +3,7 @@ import { Form } from "semantic-ui-react";
 import { useHistory } from 'react-router-dom';
 
 const LoginForm = ({user, setUser}) => {
-let history = useHistory()
+    let history = useHistory()
 
     const [formData, setFormData ] = useState({ 
         name: '',
