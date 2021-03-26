@@ -33,7 +33,7 @@ const ListingCard = ({user, setUser, listing, setListingSpotlight}) => {
     .then( r => r.json() )
     .then( listing => { 
       let favorites = user.favorites 
-      setUser([...favorites, listing] ) 
+      setUser({favorites: [...favorites, listing]} ) 
       console.log('listing successfully created in DB')
 
 
