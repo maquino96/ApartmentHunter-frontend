@@ -57,7 +57,8 @@ function App() {
           </Route>
           <Route exact path='/listings'>
             <ListingsPage 
-              user={user} 
+              user={user}
+              setUser={setUser} 
               listings={listings} 
               setListingSpotlight={setListingSpotlight}
               handleLogout={handleLogout}

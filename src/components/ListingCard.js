@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 
 
-const ListingCard = ({user, listing, setListingSpotlight}) => {
+const ListingCard = ({user, setUser, listing, setListingSpotlight}) => {
 
   let history = useHistory()
 
@@ -18,9 +18,10 @@ const ListingCard = ({user, listing, setListingSpotlight}) => {
 
     fetch(`http://localhost:3000/listings`, {
         method: 'POST',
-        headers: {'Content-Type': 'json/applications'},
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(
           {
+            user_id: user.id, 
             address: listing.address_new.line,
             price: listing.price_raw,
             square_feet: listing.sqft,
@@ -30,18 +31,21 @@ const ListingCard = ({user, listing, setListingSpotlight}) => {
         )
     })
     .then( r => r.json() )
-    .then( listing => { console.log('listing successfully created in DB')
+    .then( listing => { 
+      let favorites = user.favorites 
+      setUser([...favorites, listing] ) 
+      console.log('listing successfully created in DB')
 
 
-    fetch(`http://localhost:3000/favorites`, {
-      method: 'POST',
-      headers: {'Content-Type': 'json/applications'},
-      body: JSON.stringify({user_id: user.id, listing_id: listing.id})
-    })
-      .then( r => r.json() )
-      .then( favorite => { console.log(favorite, user.id, listing.id)
+    // fetch(`http://localhost:3000/favorites`, {
+    //   method: 'POST',
+    //   headers: {'Content-Type': 'json/applications'},
+    //   body: JSON.stringify({user_id: parseInt(user.id), listing_id: parseInt(listing.id)})
+    // })
+    //   .then( r => r.json() )
+    //   .then( favorite => { console.log(favorite, typeof user.id, typeof listing.id)
 
-      })
+    //   })
     
     })
 

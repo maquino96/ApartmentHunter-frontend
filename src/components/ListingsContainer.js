@@ -2,13 +2,14 @@ import React from "react";
 import ListingCard from "./ListingCard";
 import { Card } from "semantic-ui-react"
 
-const ListingsContainer = ( {user, listings, setListingSpotlight} ) => {
+const ListingsContainer = ( {user, setUser, listings, setListingSpotlight} ) => {
 
     const cardComponents = listings.map( listingObj=>  {
 
     return <ListingCard
         key={listingObj.listing_id}
         user={user}
+        setUser={setUser}
         listing={listingObj} 
         setListingSpotlight={setListingSpotlight}/>})
 

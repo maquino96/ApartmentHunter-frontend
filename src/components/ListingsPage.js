@@ -5,7 +5,7 @@ import ListingsContainer from "./ListingsContainer";
 import UserInfo from "./UserInfo";
 import { Grid } from 'semantic-ui-react'
 
-const ListingsPage = ({user, listings, setListingSpotlight, handleLogout}) => {
+const ListingsPage = ({user, setUser, listings, setListingSpotlight, handleLogout}) => {
     return(
     <Grid>
         <Grid.Row height={4}> 
@@ -21,6 +21,7 @@ const ListingsPage = ({user, listings, setListingSpotlight, handleLogout}) => {
         <Grid.Row height={12}>
             <ListingsContainer 
                 user={user}
+                setUser={setUser}
                 listings={listings} 
                 setListingSpotlight={setListingSpotlight}/> 
         </Grid.Row>
