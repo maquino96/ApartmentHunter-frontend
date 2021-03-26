@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react'
 import './App.css';
 import LoginForm from './LoginForm';
 import ListingsPage from './ListingsPage';
-// import { Container } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
 import { Switch, Route } from 'react-router-dom'
 import ListingDetail from './ListingDetail';
 
@@ -12,6 +12,8 @@ import ListingDetail from './ListingDetail';
 function App() {
 
   const [listings, setListings] = useState([])
+  const [user, setUser] = useState({})
+  const [listingSpotlight, setListingSpotlight] = useState({})
 
    useEffect(() => { 
 
@@ -29,28 +31,35 @@ function App() {
       .catch(err => {
         console.error(err);
       });
-
-
   }, [])
+
+  // const handleCardClick = () => {
+    
+  // }
+
   return (
     <div className="App">
 
       <Switch>
-        <h1>TEST</h1>
-          <Route path='/login'>
-            <LoginForm/>
+        <Container>
+        <h1>APARTMENTHUNTER</h1>
+          <Route exact path='/login'>
+            <LoginForm user={user} setUser={setUser}/>
           </Route>
-          <Route path='/listings/:id'>
-            <ListingDetail/>
+          <Route exact path='/listingdetail'>
+            <ListingDetail listingSpotlight={listingSpotlight}/>
           </Route>
           <Route exact path='/listings'>
-            <ListingsPage listings={listings}/>
+            <ListingsPage user={user} listings={listings} setListingSpotlight={setListingSpotlight}/>
           </Route>
-          <Route path='*'>
-            404 NOT FOUND
+          <Route exact path="/">
+            <h1>Please login or sign up</h1>
           </Route>
+          {/* <Route path='*'>
+            <h1>Error 404</h1>
+          </Route> */}
+        </Container>
       </Switch>
-
       
     </div>
   );

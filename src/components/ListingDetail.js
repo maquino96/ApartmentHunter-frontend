@@ -1,9 +1,10 @@
 import React from "react";
 
-const ListingDetail = () => {
+const ListingDetail = ({listingSpotlight}) => {
+    
     return(
     <div>
-        
+        TEST
     </div>
     )
 
