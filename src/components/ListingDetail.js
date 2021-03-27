@@ -2,6 +2,7 @@ import React from "react";
 import { Image, Divider, Grid, Segment } from 'semantic-ui-react'
 
 const ListingDetail = ({listingSpotlight}) => {
+    // console.log(listingSpotlight.photos[0].href)
     
     if (listingSpotlight) {
     return(
@@ -11,14 +12,15 @@ const ListingDetail = ({listingSpotlight}) => {
         <Grid columns={2} relaxed='very' stackable>
           <Grid.Column>
               <Grid.Row>
-                <Image fluid src={listingSpotlight ? listingSpotlight.photo : 'https://dominionmartialarts.com/wp-content/uploads/2017/04/default-image-620x600.jpg'}/>
+                <Image fluid src={listingSpotlight ? `${listingSpotlight.photos[0].href}` : 'https://dominionmartialarts.com/wp-content/uploads/2017/04/default-image-620x600.jpg'}/>
               </Grid.Row>
               <Grid.Row>
-                <div> Address: {listingSpotlight.address}</div>
-                <div> Price: {listingSpotlight.price_raw}</div>
+                <div> Address: {listingSpotlight.address.line}</div>
+                <div> Price: {listingSpotlight.price}</div>
+                <div>Square feet: {listingSpotlight.building_size.size ? listingSpotlight.building_size.size : 0} sqft. </div>
                 <div> {listingSpotlight.beds} Bed(s) // {listingSpotlight.baths} Bath(s)</div>
                 <div>  { listingSpotlight.pet_policy && listingSpotlight.pet_policy } </div>
-                <div> Listing Date: {listingSpotlight.list_date.slice(0,10)}</div>
+                <div> Listing Date: {listingSpotlight.list_date && listingSpotlight.list_date.slice(0,10)}</div>
                
 
 
