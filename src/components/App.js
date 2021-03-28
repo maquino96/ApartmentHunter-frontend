@@ -6,6 +6,7 @@ import ListingsPage from './ListingsPage';
 import { Container } from "semantic-ui-react";
 import { Switch, Route, useHistory } from 'react-router-dom'
 import ListingDetail from './ListingDetail';
+import Favorites  from './Favorites';
 
 
 
@@ -15,6 +16,7 @@ function App() {
   const [user, setUser] = useState({})
   const [listingSpotlight, setListingSpotlight] = useState({})
   let history = useHistory()
+  console.log(user)
 
    useEffect(() => { 
 
@@ -81,6 +83,9 @@ function App() {
                 setListingSpotlight={setListingSpotlight}
                 handleLogout={handleLogout}
                 />
+            </Route>
+            <Route>
+              <Favorites exact path='/favorites'/>
             </Route>
             <Route exact path="/">
               <h1>Please login or sign up</h1>

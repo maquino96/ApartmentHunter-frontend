@@ -28,8 +28,20 @@ const ListingCard = ({ user, setUser, listing, setListingSpotlight }) => {
     })
       .then((r) => r.json())
       .then((listing) => {
-        let favorites = user.favorites;
-        setUser({ favorites: [...favorites, listing] });
+
+        // setUser( user => {
+        //   let updatedUser = user
+        //   updatedUser.favorites = [...user.favorites,listing]
+        //   return updatedUser
+        // })
+
+        fetch(`http://localhost:3000/users/${user.id}`)
+          .then( r => r.json())
+          .then( userRender => setUser(userRender))
+
+
+        // let favorites = user.favorites;
+        // setUser(user => user.favorites = [...favorites, listing]);
         // this part maybe updating the User.... and preventing more favorites, investigate.
         // console.log('listing successfully created in DB')
       });
