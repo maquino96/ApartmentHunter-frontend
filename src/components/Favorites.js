@@ -8,7 +8,7 @@ function Favorites ({favorites}) {
     <FavoriteItem 
         key={listing.id} 
         listing={listing.listing}
-        photo={listing.notes}/>)
+        photo={listing.notes.slice(0, (listing.notes.length-5))+'xd-w1020_h770_q80.jpg'}/>)
 
     return (
         <Item.Group divided>
