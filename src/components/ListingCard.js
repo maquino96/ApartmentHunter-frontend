@@ -24,6 +24,7 @@ const ListingCard = ({ user, setUser, listing, setListingSpotlight }) => {
         square_feet: listing.building_size.size ? listing.building_size.size : 0,
         beds: listing.beds,
         baths: listing.baths,
+        photo: listing.photos[0].href
       }),
     })
       .then((r) => r.json())
@@ -54,7 +55,7 @@ const ListingCard = ({ user, setUser, listing, setListingSpotlight }) => {
           onClick={sendToDetail}
           src={
             listing.photo_count
-              ? listing.photos[0].href
+              ? listing.photos[1].href
               : "https://dominionmartialarts.com/wp-content/uploads/2017/04/default-image-620x600.jpg"
           }
           alt="idk"

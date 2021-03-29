@@ -1,8 +1,16 @@
 import React from "react";
 import { Button, Card, Image, Icon } from "semantic-ui-react";
+import { useHistory } from "react-router-dom";
 
 
 const UserInfo = ({user, handleLogout}) => {
+
+  let history = useHistory()
+
+  const sendToFavorites = () => {
+    console.log('clicked')
+    history.push('/favorites')
+  }
   
   return (
     <Card>
@@ -27,7 +35,7 @@ const UserInfo = ({user, handleLogout}) => {
                 <Icon name="log out" />
               </Button.Content>
             </Button>
-            <Button basic color='black' animated="vertical">
+            <Button basic color='black' animated="vertical" onClick={sendToFavorites}>
               <Button.Content visible>Favorites</Button.Content>
               <Button.Content hidden>
                 <Icon name="heart" />

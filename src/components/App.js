@@ -35,9 +35,9 @@ function App() {
     //     console.error(err);
     //   });
 
-  // UPDATED API FIGURE OUT THE FOLLOWING:
+  // UPDATED API:
 
-    fetch("https://realtor.p.rapidapi.com/properties/v2/list-for-rent?city=New%20York%20City&state_code=NY&limit=26&offset=0&postal_code=10010&sort=relevance", {
+    fetch("https://realtor.p.rapidapi.com/properties/v2/list-for-rent?city=New%20York%20City&state_code=NY&limit=28&offset=2&postal_code=10010&sort=relevance", {
       "method": "GET",
       "headers": {
         "x-rapidapi-key": "9be7cda230msh80b043bdb5786b7p11459ajsnd8086d8dfd11",
@@ -84,8 +84,8 @@ function App() {
                 handleLogout={handleLogout}
                 />
             </Route>
-            <Route>
-              <Favorites exact path='/favorites'/>
+            <Route exact path ='/favorites'>
+              <Favorites favorites={user.favorites}/>
             </Route>
             <Route exact path="/">
               <h1>Please login or sign up</h1>

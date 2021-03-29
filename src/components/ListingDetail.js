@@ -22,8 +22,6 @@ const ListingDetail = ({listingSpotlight}) => {
                 <div>  { listingSpotlight.pet_policy && listingSpotlight.pet_policy } </div>
                 <div> Listing Date: {listingSpotlight.list_date && listingSpotlight.list_date.slice(0,10)}</div>
                
-
-
               </Grid.Row>
     
           </Grid.Column>
@@ -35,7 +33,7 @@ const ListingDetail = ({listingSpotlight}) => {
           </Grid.Column>
         </Grid>
     
-        <Divider vertical></Divider>
+        <Divider vertical>location</Divider>
       </Segment>
     ) } else {
         return (
