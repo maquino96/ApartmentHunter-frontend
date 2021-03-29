@@ -4,7 +4,9 @@ import {Divider} from "semantic-ui-react"
 import CustomDotGroup from "../components/CustomDotGroup"
 
 const ImageCarousel = ({listing}) => {
-    const images = listing.photos.map(photo => {
+    let sample = listing.photos.slice(0, 14)
+
+    const images = (listing.photos.length > 14 ? sample : listing.photos).map(photo => {
         return (
             <Slide tag="a" index={listing.photos.indexOf(photo)}>
                 <Image src={photo.href.slice(0, (photo.href.length)-5)+'xd-w1020_h770_q80.jpg'} />
@@ -23,7 +25,7 @@ const ImageCarousel = ({listing}) => {
     </Slider>
 
     <Divider />
-    <CustomDotGroup slides={listing.photos.length} />
+    <CustomDotGroup slides={listing.photos.length > 14 ? sample.length : listing.photos.length} />
   </CarouselProvider>
     )
 }

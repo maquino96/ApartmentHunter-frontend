@@ -9,7 +9,7 @@ import Map from './Map.js'
 const ListingsPage = ({user, setUser, listings, setListingSpotlight, handleLogout, handleMarkerClick}) => {
     const [filterObj, setFilterObj] = useState({
         priceMax: false,
-        squareFeet: false,
+        squareFeet: "",
         baths: "",
         beds: "",
         location: "",
