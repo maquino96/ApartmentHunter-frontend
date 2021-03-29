@@ -16,6 +16,7 @@ function App() {
   const [user, setUser] = useState({})
   const [listingSpotlight, setListingSpotlight] = useState({})
   let history = useHistory()
+
   console.log(user)
 
    useEffect(() => { 
@@ -75,7 +76,10 @@ function App() {
         <h1>APARTMENTHUNTER</h1>
         <Switch>
             <Route exact path='/login'>
-              <LoginForm user={user} setUser={setUser}/>
+              <LoginForm 
+                user={user} 
+                setUser={setUser}
+              />
             </Route>
             <Route exact path='/listingdetail'>
               <ListingDetail handleMarkerClick={handleMarkerClick} listingSpotlight={listingSpotlight}/>

@@ -3,7 +3,7 @@ import { Form, Button } from "semantic-ui-react";
 import { useHistory } from 'react-router-dom';
 
 
-const LoginForm = ({user, setUser}) => {
+const LoginForm = ({user, setUser, guest, setGuest}) => {
     let history = useHistory()
 
     const [isHidden, setisHidden] = useState(true)
@@ -22,7 +22,6 @@ const LoginForm = ({user, setUser}) => {
 
     } 
 
-
     const handleLoginSubmit = (event) => {
         event.preventDefault()
 
@@ -30,12 +29,13 @@ const LoginForm = ({user, setUser}) => {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(formData)
-        })
+        })  
         .then( r => r.json() )
         .then( user => {
             if (user.name) {
                 setUser(user)
                 history.push('/listings')
+                
 
             } else {
                 alert('Username or Password is incorrect')
@@ -45,6 +45,29 @@ const LoginForm = ({user, setUser}) => {
 
     }
 
+    const handleGuestLogin = (event) => {
+        event.preventDefault()
+
+        fetch(`http://localhost:3000/users/login`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({name: 'Guest', password: 'password'})
+        })
+        .then( r => r.json() )
+        .then( user => {
+            if (user.name) {
+                setUser(user)
+                history.push('/listings')
+                
+            } else {
+                alert('Username or Password is incorrect')
+            }
+
+        })
+    
+
+
+    }
     const handleSignupSubmit = (event) => {
         event.preventDefault()
 
@@ -70,6 +93,8 @@ const LoginForm = ({user, setUser}) => {
 
     }
 
+    
+
     return (
       <div>
           {isHidden ? 
@@ -93,7 +118,7 @@ const LoginForm = ({user, setUser}) => {
               onChange={updateForm}
             />
           </Form.Group>
-          <Form.Button>Submit</Form.Button>
+          <Form.Button>Login</Form.Button>
         </Form>
         : null }
 
@@ -118,15 +143,18 @@ const LoginForm = ({user, setUser}) => {
                     onChange={updateForm}
                     />      
                 </Form.Group>
-                <Form.Button type="submit">Submit</Form.Button>
+                <Form.Button type="submit">Sign up</Form.Button>
             
             </Form>
         }
         
         <br></br>
-        { isHidden && <Button onClick={() => setisHidden(!isHidden)}>Sign Up Form</Button>} 
-        { isHidden ? null : <Button onClick={() => setisHidden(!isHidden)}>Back to Login</Button>}
-
+        { isHidden && <Button primary onClick={() => setisHidden(!isHidden)}>Sign Up Form</Button>} 
+        { isHidden ? null : <Button secondary onClick={() => setisHidden(!isHidden)}>Back to Login</Button>}
+        
+        <br></br>
+        <br></br>
+        <Button onClick={handleGuestLogin}> Guest </Button>
 
       </div>
     );
