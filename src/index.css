@@ -7,6 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-align: center;
 }
 
 code {
@@ -14,32 +15,21 @@ code {
     monospace;
 }
 
-/* 
-.grid-page { 
-  min-height: 100%;
-  display: grid;
-  grid-template-columns: 20% 80%; 
-  grid-template-rows: 25% 75%;
-}
+.map { 
+  width: 100%;
+  height: 90vh;
+  position: relative;
+} 
 
-.grid-container {
-  border: 3px solid red; 
-  grid-column: 0 / span 2;
-  grid-row: 1 / span 1;
+.location-icon {
+  font-size: 5rem;
 
 }
 
-.grid-user {
-  border: 3px solid purple;
-  grid-column: 0 / span 1;
-  grid-row: 0 / span 1;
-
+/* may need to rework the below css to change height of pics */
+.listcard-image{
+  max-width: 100%;
+  min-height:183px;
+  max-height: 183px;
+  display: block; /* remove extra space below image */
 }
-
-.grid-filter {
-  border: 3px solid green;  
-
-  grid-column: 0 / span 1;
-  grid-row: 1 / span 1;
-
-} */

@@ -16,7 +16,7 @@ const UserInfo = ({user, handleLogout}) => {
     <Card>
       <Card.Content>
         <Image
-          //   floated="right"
+          centered 
           //   size="mini"
           src="https://ca.slack-edge.com/T02MD9XTF-U01JA0CUMDJ-f56762317b59-512"
           size="tiny"

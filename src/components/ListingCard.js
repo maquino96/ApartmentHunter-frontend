@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 
 const ListingCard = ({ user, setUser, listing, setListingSpotlight }) => {
   let history = useHistory();
+  // let link = listing.photos[0].href.slice(0, (listing.photos[1].href.length)-5)+'xd-w1020_h770_q80.jpg'
 
   const sendToDetail = () => {
     setListingSpotlight(listing);
@@ -51,11 +52,11 @@ const ListingCard = ({ user, setUser, listing, setListingSpotlight }) => {
   return (
     <Card>
       <div className="image">
-        <img
+        <img className='listcard-image'
           onClick={sendToDetail}
           src={
             listing.photo_count
-              ? listing.photos[1].href
+              ? listing.photos[1].href.slice(0, (listing.photos[1].href.length)-5)+'xd-w1020_h770_q80.jpg'
               : "https://dominionmartialarts.com/wp-content/uploads/2017/04/default-image-620x600.jpg"
           }
           alt="idk"
