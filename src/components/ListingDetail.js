@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, Divider, Grid, Segment } from 'semantic-ui-react'
 import Map from './Map'
+import ImageCarousel from './ImageCarousel'
 
 const ListingDetail = ({listingSpotlight}) => {
     // console.log(listingSpotlight.photos[0].href)
@@ -22,7 +23,8 @@ const ListingDetail = ({listingSpotlight}) => {
         <Grid columns={2} relaxed='very' stackable>
           <Grid.Column>
               <Grid.Row>
-                <Image fluid src={listingSpotlight ? `${listingSpotlight.photos[0].href.slice(0, (listingSpotlight.photos[0].href.length)-5)+'xd-w1020_h770_q80.jpg'}` : 'https://dominionmartialarts.com/wp-content/uploads/2017/04/default-image-620x600.jpg'}/>
+                <ImageCarousel listing={listingSpotlight} />
+                {/* <Image fluid src={listingSpotlight ? `${listingSpotlight.photos[0].href.slice(0, (listingSpotlight.photos[0].href.length)-5)+'xd-w1020_h770_q80.jpg'}` : 'https://dominionmartialarts.com/wp-content/uploads/2017/04/default-image-620x600.jpg'}/> */}
               </Grid.Row>
               <Grid.Row>
                 <div> Address: {listingSpotlight.address.line}</div>

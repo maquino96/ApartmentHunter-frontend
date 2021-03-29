@@ -29,7 +29,7 @@ const LoginForm = ({user, setUser}) => {
         })
         .then( r => r.json() )
         .then( user => {
-            if (user) {
+            if (user.name) {
                 setUser(user)
                 history.push('/listings')
 

@@ -6,7 +6,7 @@ const Map = ({lattitude, longitude, handleMarkerClick}) => {
         <div className='map'>
             <GoogleMapReact
                 bootstrapURLKeys= {{key:
-                    'AIzaSyALK9ZT3Hef8_Nh64c1-HOGF3Q5jEhJrb8'  }}
+                    'AIzaSyCTanlrDJ66tlZ83se-DBlsAgRRf3xc-xQ'  }}
                     defaultCenter={ {lat: 40.74113,lng: -73.98971 } }
                     defaultZoom={ 14 }    
             >
