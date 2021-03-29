@@ -1,9 +1,12 @@
 import {useState} from "react";
-import { Form } from "semantic-ui-react";
+import { Form, Button } from "semantic-ui-react";
 import { useHistory } from 'react-router-dom';
+
 
 const LoginForm = ({user, setUser}) => {
     let history = useHistory()
+
+    const [isHidden, setisHidden] = useState(true)
 
     const [formData, setFormData ] = useState({ 
         name: '',
@@ -15,16 +18,17 @@ const LoginForm = ({user, setUser}) => {
         const value = e.target.value
 
         setFormData( {...formData, [key]: value })
+        // console.log(formData)
 
     } 
 
 
-    const handleSubmit = (event) => {
+    const handleLoginSubmit = (event) => {
         event.preventDefault()
 
         fetch(`http://localhost:3000/users/login`, {
             method: 'POST',
-            headers: {'Content-Type': 'json/applications'},
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(formData)
         })
         .then( r => r.json() )
@@ -41,19 +45,91 @@ const LoginForm = ({user, setUser}) => {
 
     }
 
-    return(
-    <div>
-        <Form onSubmit={
-            handleSubmit}>   
-            <Form.Group widths="equal">
-                <Form.Input fluid label="Name" placeholder="Name" name="name" value={formData.name} onChange={updateForm}/>
-                <Form.Input fluid label="Password" placeholder="Enter password" name="password" value={formData.password} onChange={updateForm}/>
-            </Form.Group>
-            <Form.Button>Submit</Form.Button>
-        </Form>
+    const handleSignupSubmit = (event) => {
+        event.preventDefault()
 
-    </div>
-    )
+        fetch(`http://localhost:3000/users/signup`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(formData)
+        })
+        .then( r => r.json() )
+        .then( user => {
+            if (user.name) {
+                setFormData({   
+                    name: '',
+                    password: ''
+                })
+                setisHidden(!isHidden)
+                alert('Thank you for signing up! Please login to continue')
+            } else {
+                alert('Unable to create user')
+            }
+
+        })
+
+    }
+
+    return (
+      <div>
+          {isHidden ? 
+        <Form onSubmit={handleLoginSubmit} id="login-form" className="hidden">
+            <h2>Login</h2>
+          <Form.Group widths="equal">
+            <Form.Input
+              
+              label="Name"
+              placeholder="Enter Name"
+              name="name"
+              value={formData.name}
+              onChange={updateForm}
+            />
+            <Form.Input
+              
+              label="Password"
+              placeholder="Enter Password"
+              name="password"
+              value={formData.password}
+              onChange={updateForm}
+            />
+          </Form.Group>
+          <Form.Button>Submit</Form.Button>
+        </Form>
+        : null }
+
+
+        {isHidden ? null :
+            
+            <Form onSubmit={handleSignupSubmit}>
+                <h2>Sign Up Form</h2>
+                <Form.Group widths="equal">
+                    <Form.Input
+                    label ='Name'
+                    placeholder="Desired Name" 
+                    name='name'
+                    value={formData.name}
+                    onChange={updateForm}
+                    />
+                    <Form.Input
+                    label ='Password'
+                    placeholder="Desired Password" 
+                    name='password'
+                    value={formData.password}
+                    onChange={updateForm}
+                    />      
+                </Form.Group>
+                <Form.Button type="submit">Submit</Form.Button>
+            
+            </Form>
+        }
+        
+        <br></br>
+        { isHidden && <Button onClick={() => setisHidden(!isHidden)}>Sign Up Form</Button>} 
+        { isHidden ? null : <Button onClick={() => setisHidden(!isHidden)}>Back to Login</Button>}
+
+
+      </div>
+    );
 }
 
 export default LoginForm;
