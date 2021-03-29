@@ -11,24 +11,15 @@ const ImageCarousel = ({listing}) => {
             </Slide>
         )
     })
+    
     return (
         <CarouselProvider
     naturalSlideWidth={1}
     naturalSlideHeight={1}
     totalSlides={listing.photos.length} // Variable to array.length
   >
-      {/* map over slides with imageArray */}
     <Slider> 
         {images}
-      {/* <Slide tag="a" index={0}>
-        <Image src="https://lorempixel.com/800/800/cats/0" />
-      </Slide>
-      <Slide tag="a" index={1}>
-        <Image src="https://lorempixel.com/800/800/cats/1" />
-      </Slide>
-      <Slide tag="a" index={2}>
-        <Image src="https://lorempixel.com/800/800/cats/2" />
-      </Slide> */}
     </Slider>
 
     <Divider />

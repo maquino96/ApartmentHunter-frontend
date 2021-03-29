@@ -1,19 +1,11 @@
 import React from "react";
-import { Image, Divider, Grid, Segment } from 'semantic-ui-react'
+import { Divider, Grid, Segment } from 'semantic-ui-react'
 import Map from './Map'
 import ImageCarousel from './ImageCarousel'
 
-const ListingDetail = ({listingSpotlight}) => {
+const ListingDetail = ({listingSpotlight, handleMarkerClick}) => {
     // console.log(listingSpotlight.photos[0].href)
 
-    const handleMarkerClick = () =>{
-      // Below code allows you to redirect to another url in window
-      // window.location.href=listingSpotlight.rdc_web_url 
-
-      // Code that is running below will redirect in another tab. '_blank' may have  a security concern per the following stackoverflow link:
-      // https://stackoverflow.com/questions/45046030/maintaining-href-open-in-new-tab-with-an-onclick-handler-in-react
-      window.open(listingSpotlight.rdc_web_url, '_blank')
-    }
     
     if (listingSpotlight) {
     return(
@@ -43,11 +35,9 @@ const ListingDetail = ({listingSpotlight}) => {
             size='large' alt='map holder'/> */}
 
           <Map 
-            lattitude={listingSpotlight.address.lat} 
-            longitude={listingSpotlight.address.lon}
-            handleMarkerClick={handleMarkerClick}/>
-
-       
+            listings={[listingSpotlight]}
+            handleMarkerClick={handleMarkerClick}
+            />
           </Grid.Column>
         </Grid>
     

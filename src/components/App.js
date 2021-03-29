@@ -60,9 +60,14 @@ function App() {
     history.push('/login')
   }
 
-  // const handleCardClick = () => {
-    
-  // }
+  const handleMarkerClick = (url) => {
+    // Below code allows you to redirect to another url in window
+    // window.location.href=listingSpotlight.rdc_web_url 
+
+    // Code that is running below will redirect in another tab. '_blank' may have  a security concern per the following stackoverflow link:
+    // https://stackoverflow.com/questions/45046030/maintaining-href-open-in-new-tab-with-an-onclick-handler-in-react
+    window.open(url, '_blank')
+  }
 
   return (
     <div className="App">
@@ -73,7 +78,7 @@ function App() {
               <LoginForm user={user} setUser={setUser}/>
             </Route>
             <Route exact path='/listingdetail'>
-              <ListingDetail listingSpotlight={listingSpotlight}/>
+              <ListingDetail handleMarkerClick={handleMarkerClick} listingSpotlight={listingSpotlight}/>
             </Route>
             <Route exact path='/listings'>
               <ListingsPage 
@@ -82,6 +87,7 @@ function App() {
                 listings={listings} 
                 setListingSpotlight={setListingSpotlight}
                 handleLogout={handleLogout}
+                handleMarkerClick={handleMarkerClick}
                 />
             </Route>
             <Route exact path ='/favorites'>

@@ -1,6 +1,6 @@
 import React from "react";
 import ListingCard from "./ListingCard";
-import { Card } from "semantic-ui-react"
+import { Card, Segment } from "semantic-ui-react"
 
 const ListingsContainer = ( {user, setUser, listings, setListingSpotlight} ) => {
 
@@ -16,10 +16,11 @@ const ListingsContainer = ( {user, setUser, listings, setListingSpotlight} ) => 
 
     return(
     <div className='grid-container'> 
-            
-            <Card.Group itemsPerRow={4}>
+        <Segment style={{overflow: 'auto', maxHeight: '90vh', maxWidth: '50vw'}}>
+            <Card.Group itemsPerRow={3}>
                 {cardComponents}
             </Card.Group>
+        </Segment>
           
     </div>
     )
