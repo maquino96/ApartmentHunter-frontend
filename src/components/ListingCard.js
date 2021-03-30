@@ -74,7 +74,7 @@ const ListingCard = ({ user, setUser, listing, setListingSpotlight }) => {
       <div className="extra content">
         <span>
           <i className="icon dollar sign green" />
-          {listing.price ? listing.price : listing.community.price_max}
+          {listing.price ? listing.price : listing.community.price_min}
           <i className="icon star" onClick={handleFavorite} />
         </span>
       </div>

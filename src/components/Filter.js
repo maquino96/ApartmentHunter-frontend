@@ -5,7 +5,6 @@ const Filter = ({filterObj, setFilterObj, setZipcode}) => {
 
     const [zipValue, setZipValue] = useState('')
     
-    
    
     const handleFilter = (e) => {
         const key = e.target.name
@@ -15,7 +14,6 @@ const Filter = ({filterObj, setFilterObj, setZipcode}) => {
             [key]: value
         })
     }
-
 
     const handleZipcode = (e) => {
         e.preventDefault()

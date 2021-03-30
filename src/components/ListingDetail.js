@@ -20,7 +20,7 @@ const ListingDetail = ({center, listingSpotlight, handleMarkerClick}) => {
               </Grid.Row>
               <Grid.Row>
                 <div> Address: {listingSpotlight.address.line}</div>
-                <div> Price: {listingSpotlight.price? listingSpotlight.price : listingSpotlight.community.price_max}</div>
+                <div> Price: {listingSpotlight.price? listingSpotlight.price : listingSpotlight.community.price_min}</div>
                 <div>Square feet: {listingSpotlight.building_size.size ? listingSpotlight.building_size.size : (listingSpotlight.community.sqft_min ? listingSpotlight.community.sqft_min : 0)} sqft. </div>
                 <div> {listingSpotlight.baths_full ? listingSpotlight.beds : listingSpotlight.community.beds_min} Bed(s) // {listingSpotlight.baths ? listingSpotlight.baths : listingSpotlight.community.baths_min} Bath(s)</div>
                 <div>  { listingSpotlight.pet_policy && listingSpotlight.pet_policy } </div>

@@ -16,8 +16,8 @@ const ListingsPage = ({user, setUser, listings, setListingSpotlight, handleLogou
     })
 
     const priceSort = listings.sort((a, b) => {
-        if (!parseInt(filterObj.priceMax)) return (a.price - b.price) // Low to High
-        else if (parseInt(filterObj.priceMax)) return (b.price - a.price) // High to Low
+        if (!parseInt(filterObj.priceMax)) return ((a.price ? a.price : a.community.price_min) - (b.price ? b.price : b.community.price_min)) // Low to High
+        else if (parseInt(filterObj.priceMax)) return ((b.price ? b.price : b.community.price_min) - (a.price ? a.price : a.community.price_min)) // High to Low
         else return 1
     })
 
