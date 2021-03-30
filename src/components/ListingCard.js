@@ -1,9 +1,10 @@
-import React from "react";
+import {useState, useEffect } from "react";
 import { Card } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 
-const ListingCard = ({ user, setUser, listing, setListingSpotlight }) => {
+const ListingCard = ({ user, setUser, listing, setListingSpotlight, removeFavorite}) => {
   let history = useHistory();
+  const [isFavorite, setIsFavorite] = useState(false)
   // let link = listing.photos[0].href.slice(0, (listing.photos[1].href.length)-5)+'xd-w1020_h770_q80.jpg'
 
   const sendToDetail = () => {
@@ -11,6 +12,16 @@ const ListingCard = ({ user, setUser, listing, setListingSpotlight }) => {
     console.log(listing)
     history.push("/listingdetail");
   };
+
+  const handleRemoveFavorite = () => {
+    
+    const ourFavorite = user.favorites.find( favorite => parseInt(favorite.prop_id) === parseInt(listing.listing_id))
+    setIsFavorite((isFavorite) => !isFavorite )
+    if(ourFavorite) { 
+    removeFavorite(ourFavorite.id)
+    }
+
+  }
 
   const handleFavorite = (event) => {
     event.preventDefault();
@@ -25,12 +36,13 @@ const ListingCard = ({ user, setUser, listing, setListingSpotlight }) => {
         square_feet: listing.building_size.size ? listing.building_size.size : 0,
         beds: listing.beds,
         baths: listing.baths,
+        prop_id: parseInt(listing.listing_id),
         photo: listing.photos[0].href
       }),
     })
       .then((r) => r.json())
       .then((listing) => {
-
+        setIsFavorite(true)
         // setUser( user => {
         //   let updatedUser = user
         //   updatedUser.favorites = [...user.favorites,listing]
@@ -49,6 +61,16 @@ const ListingCard = ({ user, setUser, listing, setListingSpotlight }) => {
       });
   };
 
+  useEffect(()=>{
+
+    let prop_ids = user.favorites.map( favorite => parseInt(favorite.prop_id))
+    if (prop_ids.includes(parseInt(listing.listing_id))) {
+        setIsFavorite(true)  
+    }
+
+
+  },[])
+
   return (
     <Card>
       <div className="image">
@@ -66,7 +88,8 @@ const ListingCard = ({ user, setUser, listing, setListingSpotlight }) => {
         <div className="header">{listing.address.line}</div>
         <span>
           <i className="icon bed gray" />{" "}
-          {listing.baths_full ? (listing.beds === 0 ? "Studio" : listing.beds + " Bed(s)") : (listing.community.beds_min === 0 ? "Studio" : listing.community.beds_min + " Bed(s)")} /{" "}
+          {/* {listing.community ? (listing.community.beds_min === 0 ? "Studio" : listing.community.beds_min + " Bed(s)") : (listing.beds === 0 ? "Studio" : listing.beds + " Bed(s)")} /{" "} */}
+          {listing.beds || listing.beds === 0 ? (listing.beds === 0 ? "Studio" : listing.beds + " Bed(s)") : (listing.community.beds_min === 0 ? "Studio" : listing.community.beds_min + " Bed(s)")} /{" "}
           <i className="icon bath gray" /> {listing.baths ? listing.baths : listing.community.baths_min} Bath
         </span>
       </div>
@@ -75,7 +98,7 @@ const ListingCard = ({ user, setUser, listing, setListingSpotlight }) => {
         <span>
           <i className="icon dollar sign green" />
           {listing.price ? listing.price : listing.community.price_min}
-          <i className="icon star" onClick={handleFavorite} />
+          <i className={isFavorite ? "icon star yellow" : "icon star"} onClick={isFavorite ? handleRemoveFavorite : handleFavorite} />
         </span>
       </div>
     </Card>

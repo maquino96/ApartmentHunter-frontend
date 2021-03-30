@@ -2,7 +2,9 @@ import React from "react";
 import ListingCard from "./ListingCard";
 import { Card, Segment } from "semantic-ui-react"
 
-const ListingsContainer = ( {user, setUser, listings, setListingSpotlight} ) => {
+const ListingsContainer = ( {user, setUser, listings, setListingSpotlight, removeFavorite} ) => {
+
+
 
     const cardComponents = listings.map( listingObj=>  {
 
@@ -11,7 +13,8 @@ const ListingsContainer = ( {user, setUser, listings, setListingSpotlight} ) => 
         user={user}
         setUser={setUser}
         listing={listingObj} 
-        setListingSpotlight={setListingSpotlight}/>
+        setListingSpotlight={setListingSpotlight}
+        removeFavorite={removeFavorite}/>
     })
 
 

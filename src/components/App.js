@@ -57,10 +57,28 @@ function App() {
     window.open(url, "_blank");
   };
 
+  const removeFavorite = (id) => {
+
+    fetch(`http://localhost:3000/favorites/${id}`, {
+      method: 'DELETE' 
+    })
+      .then( r=> r.json())
+      .then( deleted => {
+        console.log(deleted)
+        console.log('deleted') 
+      
+        fetch(`http://localhost:3000/users/${user.id}`)
+        .then( r => r.json())
+        .then( userRender => setUser(userRender))
+      })
+
+
+  }
+
   return (
     <div className="App">
       <Container>
-        <h1>APARTMENTHUNTER</h1>
+        <h1>APARTMENT//HUNTER</h1>
         <Switch>
           <Route exact path="/login">
             <LoginForm user={user} setUser={setUser} />
@@ -82,10 +100,13 @@ function App() {
               handleMarkerClick={handleMarkerClick}
               setZipcode={setZipcode}
               center={center}
+              removeFavorite={removeFavorite}
             />
           </Route>
           <Route exact path="/favorites">
-            <Favorites favorites={user.favorites} />
+            <Favorites 
+            favorites={user.favorites}
+            removeFavorite={removeFavorite} />
           </Route>
           <Route exact path="/">
             <h1>Please login or sign up</h1>

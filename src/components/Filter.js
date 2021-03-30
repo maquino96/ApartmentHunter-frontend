@@ -26,7 +26,7 @@ const Filter = ({filterObj, setFilterObj, setZipcode}) => {
         <Form onSubmit={handleZipcode}>
             <Form.Input
                 label ='Zipcode'
-                placeholder="Serch by zipcode" 
+                placeholder="Search by zipcode" 
                 name='zipcode'
                 value={zipValue} 
                 onChange={(e)=>setZipValue(e.target.value)}
@@ -44,7 +44,7 @@ const Filter = ({filterObj, setFilterObj, setZipcode}) => {
             </select>
             <select onChange={handleFilter} name="beds" className="ui dropdown">
                 <option value="">Number of Bedrooms</option>
-                <option value="Studio">Studio</option>
+                <option value="0">Studio</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

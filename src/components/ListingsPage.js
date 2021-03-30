@@ -6,7 +6,7 @@ import UserInfo from "./UserInfo";
 import { Grid } from 'semantic-ui-react'
 import Map from './Map.js'
 
-const ListingsPage = ({user, setUser, listings, setListingSpotlight, handleLogout, handleMarkerClick, setZipcode, center}) => {
+const ListingsPage = ({user, setUser, listings, setListingSpotlight, handleLogout, handleMarkerClick, setZipcode, center, removeFavorite}) => {
     const [filterObj, setFilterObj] = useState({
         priceMax: false,
         squareFeet: "",
@@ -23,16 +23,16 @@ const ListingsPage = ({user, setUser, listings, setListingSpotlight, handleLogou
 
     const squareFeetFilter = priceSort.filter(listing => {
         if (filterObj.squareFeet) {
-            return listing.building_size.size >= parseInt(filterObj.squareFeet)
+            return (listing.building_size.size ? listing.building_size.size : listing.communit.sqft_min) >= parseInt(filterObj.squareFeet)
         }
         return true
     })
 
     const bedFilter = squareFeetFilter.filter(listing => {
         if (filterObj.beds) {
-            if (filterObj.beds === "4") return listing.beds >= 4
+            if (filterObj.beds === "4") return (listing.beds || listing.beds === 0 ? listing.beds : listing.community.beds_min) >= 4
             else {
-                return listing.beds === parseInt(filterObj.beds)
+                return (listing.beds || listing.beds=== 0 ? listing.beds : listing.community.beds_min) === parseInt(filterObj.beds)
             }
         } else return true
     })
@@ -73,7 +73,8 @@ const ListingsPage = ({user, setUser, listings, setListingSpotlight, handleLogou
                 user={user}
                 setUser={setUser}
                 listings={locationFilter} 
-                setListingSpotlight={setListingSpotlight}/> 
+                setListingSpotlight={setListingSpotlight}
+                removeFavorite={removeFavorite}/> 
             </Grid.Column>
             <Grid.Column width={7}>
                 <Map 
