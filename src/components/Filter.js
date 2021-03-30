@@ -1,6 +1,11 @@
-import React from "react";
+import {useState} from "react";
+import { Form } from "semantic-ui-react";
 
-const Filter = ({filterObj, setFilterObj}) => {
+const Filter = ({filterObj, setFilterObj, setZipcode}) => {
+
+    const [zipValue, setZipValue] = useState('')
+    
+    
    
     const handleFilter = (e) => {
         const key = e.target.name
@@ -10,7 +15,27 @@ const Filter = ({filterObj, setFilterObj}) => {
             [key]: value
         })
     }
+
+
+    const handleZipcode = (e) => {
+        e.preventDefault()
+        console.log(e.target.value)
+        setZipcode(zipValue)
+        setZipValue('')
+    }
     return(
+        <>
+        <Form onSubmit={handleZipcode}>
+            <Form.Input
+                label ='Zipcode'
+                placeholder="Serch by zipcode" 
+                name='zipcode'
+                value={zipValue} 
+                onChange={(e)=>setZipValue(e.target.value)}
+            />
+            <Form.Button type='submit'> Search </Form.Button>
+        </Form>
+        
         <div className='grid-filter'>
             <h1>Filter Results</h1>
 
@@ -40,6 +65,7 @@ const Filter = ({filterObj, setFilterObj}) => {
                 <input type="text" name="location" placeholder="Search by Location..." value={filterObj.location}></input>
             </div>     
         </div>
+        </>
     )
 
 

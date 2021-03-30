@@ -118,7 +118,7 @@ const LoginForm = ({user, setUser, guest, setGuest}) => {
               onChange={updateForm}
             />
           </Form.Group>
-          <Form.Button>Login</Form.Button>
+          <Form.Button type='submit'>Login</Form.Button>
         </Form>
         : null }
 

@@ -66,15 +66,15 @@ const ListingCard = ({ user, setUser, listing, setListingSpotlight }) => {
         <div className="header">{listing.address.line}</div>
         <span>
           <i className="icon bed gray" />{" "}
-          {listing.beds === 0 ? "Studio" : listing.beds + " Bed(s)"} /{" "}
-          <i className="icon bath gray" /> {listing.baths} Bath
+          {listing.baths_full ? (listing.beds === 0 ? "Studio" : listing.beds + " Bed(s)") : (listing.community.beds_min === 0 ? "Studio" : listing.community.beds_min + " Bed(s)")} /{" "}
+          <i className="icon bath gray" /> {listing.baths ? listing.baths : listing.community.baths_min} Bath
         </span>
       </div>
 
       <div className="extra content">
         <span>
           <i className="icon dollar sign green" />
-          {listing.price}
+          {listing.price ? listing.price : listing.community.price_max}
           <i className="icon star" onClick={handleFavorite} />
         </span>
       </div>

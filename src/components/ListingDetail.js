@@ -3,7 +3,7 @@ import { Divider, Grid, Segment } from 'semantic-ui-react'
 import Map from './Map'
 import ImageCarousel from './ImageCarousel'
 
-const ListingDetail = ({listingSpotlight, handleMarkerClick}) => {
+const ListingDetail = ({center, listingSpotlight, handleMarkerClick}) => {
     // console.log(listingSpotlight.photos[0].href)
 
     
@@ -20,9 +20,9 @@ const ListingDetail = ({listingSpotlight, handleMarkerClick}) => {
               </Grid.Row>
               <Grid.Row>
                 <div> Address: {listingSpotlight.address.line}</div>
-                <div> Price: {listingSpotlight.price}</div>
-                <div>Square feet: {listingSpotlight.building_size.size ? listingSpotlight.building_size.size : 0} sqft. </div>
-                <div> {listingSpotlight.beds} Bed(s) // {listingSpotlight.baths} Bath(s)</div>
+                <div> Price: {listingSpotlight.price? listingSpotlight.price : listingSpotlight.community.price_max}</div>
+                <div>Square feet: {listingSpotlight.building_size.size ? listingSpotlight.building_size.size : (listingSpotlight.community.sqft_min ? listingSpotlight.community.sqft_min : 0)} sqft. </div>
+                <div> {listingSpotlight.baths_full ? listingSpotlight.beds : listingSpotlight.community.beds_min} Bed(s) // {listingSpotlight.baths ? listingSpotlight.baths : listingSpotlight.community.baths_min} Bath(s)</div>
                 <div>  { listingSpotlight.pet_policy && listingSpotlight.pet_policy } </div>
                 <div> Listing Date: {listingSpotlight.list_date && listingSpotlight.list_date.slice(0,10)}</div>
                
@@ -35,6 +35,7 @@ const ListingDetail = ({listingSpotlight, handleMarkerClick}) => {
             size='large' alt='map holder'/> */}
 
           <Map 
+            center={center}
             listings={[listingSpotlight]}
             handleMarkerClick={handleMarkerClick}
             />

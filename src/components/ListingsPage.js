@@ -6,7 +6,7 @@ import UserInfo from "./UserInfo";
 import { Grid } from 'semantic-ui-react'
 import Map from './Map.js'
 
-const ListingsPage = ({user, setUser, listings, setListingSpotlight, handleLogout, handleMarkerClick}) => {
+const ListingsPage = ({user, setUser, listings, setListingSpotlight, handleLogout, handleMarkerClick, setZipcode, center}) => {
     const [filterObj, setFilterObj] = useState({
         priceMax: false,
         squareFeet: "",
@@ -59,7 +59,12 @@ const ListingsPage = ({user, setUser, listings, setListingSpotlight, handleLogou
                     handleLogout={handleLogout}/>
             </Grid.Column>
             <Grid.Column width={12}>
-                <Filter listings={listings} filterObj={filterObj} setFilterObj={setFilterObj}/>
+                <Filter 
+                    listings={listings} 
+                    filterObj={filterObj} 
+                    setFilterObj={setFilterObj}
+                    setZipcode={setZipcode}
+                    />
             </Grid.Column>
         </Grid.Row>    
         <Grid.Row height={12}>
@@ -71,7 +76,10 @@ const ListingsPage = ({user, setUser, listings, setListingSpotlight, handleLogou
                 setListingSpotlight={setListingSpotlight}/> 
             </Grid.Column>
             <Grid.Column width={7}>
-                <Map handleMarkerClick={handleMarkerClick} listings={listings}/>
+                <Map 
+                center={center}
+                listings={listings}
+                handleMarkerClick={handleMarkerClick} />
             </Grid.Column>
         </Grid.Row>
 

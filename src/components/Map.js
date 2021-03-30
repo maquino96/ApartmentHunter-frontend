@@ -1,7 +1,7 @@
 import GoogleMapReact from 'google-map-react'
 import Marker from './Marker'
 
-const Map = ({listings, handleMarkerClick}) => {
+const Map = ({center, listings, handleMarkerClick}) => {
     const coordinateArr = listings.map(listing => {
         return {lat: listing.address.lat, lng: listing.address.lon, url: listing.rdc_web_url}
     })
@@ -15,7 +15,7 @@ const Map = ({listings, handleMarkerClick}) => {
             <GoogleMapReact
                 bootstrapURLKeys= {{key:
                     'AIzaSyCTanlrDJ66tlZ83se-DBlsAgRRf3xc-xQ'  }}
-                    defaultCenter={ {lat: 40.74113,lng: -73.98971 } }
+                    center={ center }
                     defaultZoom={ 14 }    
             >
 
@@ -26,11 +26,5 @@ const Map = ({listings, handleMarkerClick}) => {
     )
 }
 
-// Map.defaultProps = {
-//     center: {
-
-//     },
-//     zoom: 6
-// }
 
 export default Map
