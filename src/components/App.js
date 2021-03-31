@@ -3,10 +3,16 @@ import LoginForm from "./LoginForm";
 import ListingsPage from "./ListingsPage";
 import { Container } from "semantic-ui-react";
 import { Switch, Route, useHistory } from "react-router-dom";
+import styled from "styled-components"
 import ListingDetail from "./ListingDetail";
 import Favorites from "./Favorites";
 import UserInfo from "./UserInfo";
 
+const SideIcon = styled.i`
+position: fixed;
+top: 10px;
+left: 0px;
+`
 
 function App() {
   const [listings, setListings] = useState([]);
@@ -85,10 +91,12 @@ function App() {
     setUserUpdate(true)
   }
 
+
   return (
-    <div className="App">
-      <Container>
-        <h1 className='pointer' onClick={()=>setVisible(!visible)}>APARTMENT//HUNTER</h1>
+    <div className="App" >
+      <SideIcon className="large bordered inverted black bars icon pointer" onClick={()=>setVisible(!visible)}></SideIcon>
+      <Container onClick={() => setVisible(false)}>
+        <h1>APARTMENT//HUNTER</h1>
         <UserInfo 
                     visible={visible}
                     setVisible={setVisible}

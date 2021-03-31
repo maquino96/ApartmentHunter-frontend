@@ -1,9 +1,28 @@
-import { Button, Icon, Item } from "semantic-ui-react";
+import { Button, Item, TextArea, Form, Segment } from "semantic-ui-react";
+import {useState} from "react"
 
-function FavoriteItem({listing, photo}) {
+function FavoriteItem({listing, photo, notes, id, removeFavorite}) {
+  const [isNotes, setIsNotes] = useState(false)
+  const [notesState, setNotesState] = useState(notes)
 
   const handlePhotoClick = () => {
     window.open(photo, '_blank')
+  }
+
+  const handleNotes = () => { 
+    if(isNotes) {
+      fetch(`http://localhost:3000/favorites/${id}`, {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({notes: notesState})
+      })
+        .then(res => res.json())
+        .then(favorite => {
+          setIsNotes(!isNotes)
+        })
+    } else {
+    setIsNotes(!isNotes)
+    }
   }
 
   return (
@@ -12,17 +31,19 @@ function FavoriteItem({listing, photo}) {
       <Item.Image src={photo} onClick={handlePhotoClick}/>
       <Item.Content>
         <Item.Header as="a">{listing.address}</Item.Header>
-        <Item.Meta><span className="cinema">Union Square 14</span></Item.Meta>
         <Item.Description>
                 <div> Price: {listing.price}</div>
                 <div>Square feet: {listing.square_feet} sqft. </div>
                 <div> {listing.beds} Bed(s) // {listing.baths} Bath(s)</div>
         </Item.Description>
-
-        <Button primary floated='right'>
-            Notes
-            <Icon name='right chevron' />
+        <Form>
+          {isNotes ? <TextArea onChange={(e) => setNotesState(e.target.value)} value={notesState}></TextArea> : <Segment className="ui padded segment">{notesState}</Segment>}
+        </Form>
+        <br></br>
+        <Button primary floated='right' onClick={handleNotes}>
+            {isNotes ? "Save Notes" : "Add Notes"}
           </Button>
+        <Button secondary color='red' floated='right' onClick={() => removeFavorite(id)}>Remove Favorite</Button>
       </Item.Content>
     </Item>
   );
