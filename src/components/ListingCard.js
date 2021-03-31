@@ -69,12 +69,12 @@ const ListingCard = ({ user, setUser, listing, setListingSpotlight, removeFavori
     }
 
 
-  },[])
+  },[listing.listing_id, user.favorites])
 
   return (
     <Card>
       <div className="image">
-        <img className='listcard-image'
+        <img className='listcard-image' 
           onClick={sendToDetail}
           src={
             listing.photo_count
@@ -90,7 +90,7 @@ const ListingCard = ({ user, setUser, listing, setListingSpotlight, removeFavori
           <i className="icon bed gray" />{" "}
           {/* {listing.community ? (listing.community.beds_min === 0 ? "Studio" : listing.community.beds_min + " Bed(s)") : (listing.beds === 0 ? "Studio" : listing.beds + " Bed(s)")} /{" "} */}
           {listing.beds || listing.beds === 0 ? (listing.beds === 0 ? "Studio" : listing.beds + " Bed(s)") : (listing.community.beds_min === 0 ? "Studio" : listing.community.beds_min + " Bed(s)")} /{" "}
-          <i className="icon bath gray" /> {listing.baths ? listing.baths : listing.community.baths_min} Bath
+          <i className="icon bath gray" /> {listing.baths && listing.baths} Bath
         </span>
       </div>
 
