@@ -107,98 +107,95 @@ const LoginForm = ({ user, setUser, guest, setGuest, userUpdate, setUserUpdate, 
 
   return (
     <div>
-      {userUpdate  ? 
-        <Form onSubmit={handleUpdateSubmit}>
-        <h2>Update Form</h2>
-        <Form.Group widths="equal">
-        <Form.Input
-            label="Name"
-            placeholder="New Name"
-            name="name"
-            value={formData.name}
-            onChange={updateForm}
-        />
-        <Form.Input
-            label="Password"
-            placeholder="New Password"
-            name="password"
-            value={formData.password}
-            onChange={updateForm}
-        />
-        </Form.Group>
-        <Form.Button type="submit">Update</Form.Button>
-    </Form>
+      {userUpdate ? (
+        <div>
+          <Form onSubmit={handleUpdateSubmit}>
+            <h2>Update Form</h2>
+            <Form.Group widths="equal">
+              <Form.Input
+                label="Name"
+                placeholder="New Name"
+                name="name"
+                value={formData.name}
+                onChange={updateForm}
+              />
+              <Form.Input
+                label="Password"
+                placeholder="New Password"
+                name="password"
+                value={formData.password}
+                onChange={updateForm}
+              />
+            </Form.Group>
+            <Form.Button type="submit">Update</Form.Button>
+          </Form>
+        </div>
+      ) : (
+        <div>
+        {isHidden && (
+          <Form onSubmit={handleLoginSubmit} id="login-form" className="hidden">
+            <h2>Login</h2>
+            <Form.Group widths="equal">
+              <Form.Input
+                label="Name"
+                placeholder="Enter Name"
+                name="name"
+                value={formData.name}
+                onChange={updateForm}
+              />
+              <Form.Input
+                label="Password"
+                placeholder="Enter Password"
+                name="password"
+                value={formData.password}
+                onChange={updateForm}
+              />
+            </Form.Group>
+            <Form.Button type="submit">Login</Form.Button>
+          </Form>
+        )}
 
-    : console.log('false')
-    
-      }
-    
-      {isHidden && (
-        <Form onSubmit={handleLoginSubmit} id="login-form" className="hidden">
-          <h2>Login</h2>
-          <Form.Group widths="equal">
-            <Form.Input
-              label="Name"
-              placeholder="Enter Name"
-              name="name"
-              value={formData.name}
-              onChange={updateForm}
-            />
-            <Form.Input
-              label="Password"
-              placeholder="Enter Password"
-              name="password"
-              value={formData.password}
-              onChange={updateForm}
-            />
-          </Form.Group>
-          <Form.Button type="submit">Login</Form.Button>
-        </Form>
+        {isHidden ? null : (
+          <Form onSubmit={handleSignupSubmit}>
+            <h2>Sign Up Form</h2>
+            <Form.Group widths="equal">
+              <Form.Input
+                label="Name"
+                placeholder="Desired Name"
+                name="name"
+                value={formData.name}
+                onChange={updateForm}
+              />
+              <Form.Input
+                label="Password"
+                placeholder="Desired Password"
+                name="password"
+                value={formData.password}
+                onChange={updateForm}
+              />
+            </Form.Group>
+            <Form.Button type="submit">Sign up</Form.Button>
+          </Form>
+        )}
+
+        <br></br>
+        {isHidden && (
+          <Button primary onClick={() => setisHidden(!isHidden)}>
+            Sign Up Form
+          </Button>
+        )}
+        {isHidden ? null : (
+          <Button secondary onClick={() => setisHidden(!isHidden)}>
+            Back to Login
+          </Button>
+        )}
+
+        <br></br>
+        <br></br>
+        <Button onClick={handleGuestLogin}> Guest </Button>
+      </div>
+        
       )}
-
-      {isHidden ? null : (
-        <Form onSubmit={handleSignupSubmit}>
-          <h2>Sign Up Form</h2>
-          <Form.Group widths="equal">
-            <Form.Input
-              label="Name"
-              placeholder="Desired Name"
-              name="name"
-              value={formData.name}
-              onChange={updateForm}
-            />
-            <Form.Input
-              label="Password"
-              placeholder="Desired Password"
-              name="password"
-              value={formData.password}
-              onChange={updateForm}
-            />
-          </Form.Group>
-          <Form.Button type="submit">Sign up</Form.Button>
-        </Form>
-      )}
-
-      <br></br>
-      {isHidden && (
-        <Button primary onClick={() => setisHidden(!isHidden)}>
-          Sign Up Form
-        </Button>
-      )}
-      {isHidden ? null : (
-        <Button secondary onClick={() => setisHidden(!isHidden)}>
-          Back to Login
-        </Button>
-      )}
-
-      <br></br>
-      <br></br>
-      <Button onClick={handleGuestLogin}> Guest </Button>
-    
-
-    
-    
-    
     </div>
   );
 };
