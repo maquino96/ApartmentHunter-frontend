@@ -71,7 +71,7 @@ div.App {
 
 div.alt-app {
   background-image: url(./components/backgrounds/chase-laser.png);
-  height: 100%;
+  height: 120vh;
   width: 100%;
 }
 
