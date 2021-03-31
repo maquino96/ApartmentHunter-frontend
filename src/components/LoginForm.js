@@ -135,6 +135,7 @@ const LoginForm = ({ user, setUser, guest, setGuest, userUpdate, setUserUpdate, 
             </Form.Group>
             <Form.Button type="submit">Update</Form.Button>
           </Form>
+          <Button basic color="red" floated='right' onClick={() => history.push('./listings')}>Go Back</Button>
         </div>
       ) : (
         <div>
