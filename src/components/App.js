@@ -24,6 +24,9 @@ function App() {
   const [visible, setVisible] = useState(false)
   const [userUpdate, setUserUpdate] = useState(false)
   const [isHidden, setisHidden] = useState(true);
+  const [ludicrous, setLudicrous] = useState(true);
+  const [lightMode, setLightMode] = useState(true);
+  const [egg, setEgg] = useState(true)
   let history = useHistory();
   let location = useLocation();
   // console.log(user);
@@ -96,16 +99,22 @@ function App() {
 
 
   return (
-    <div className="App" >
-      {location.pathname !== "/login" && <SideIcon className="large bordered inverted black bars icon pointer" onClick={()=>setVisible(!visible)}></SideIcon> }
+    <div className={ egg ? (lightMode ? 'light' : 'dark' ) : (ludicrous ? "App" : 'alt-app')}  id={ ludicrous ? 'background-id' : 'work'} >
+      {location.pathname !== "/login" && <SideIcon className="big bordered inverted black bars icon pointer" style={{marginLeft: '0.5em'}} onClick={()=>setVisible(!visible)}></SideIcon> }
       <Container onClick={() => setVisible(false)}>
-        <h1>APARTMENT//HUNTER</h1>
+        <h1 style={{color: lightMode ? 'black':'white', fontSize: '4em'}}>APARTMENT//HUNTER</h1>
         <UserInfo 
                     visible={visible}
                     setVisible={setVisible}
                     user={user} 
                     handleLogout={handleLogout}
                     handleUpdateForm={handleUpdateForm}
+                    ludicrous={ludicrous}
+                    setLudicrous={setLudicrous}
+                    lightMode={lightMode}
+                    setLightMode={setLightMode}
+                    egg={egg}
+                    setEgg={setEgg}
                 />
         <Switch>
           <Route exact path="/login">
@@ -137,6 +146,10 @@ function App() {
               setZipcode={setZipcode}
               center={center}
               removeFavorite={removeFavorite}
+              ludicrous={ludicrous}
+              setLudicrous={setLudicrous}
+              lightMode={lightMode}
+              egg={egg}
             />
           </Route>
           <Route exact path="/favorites">
