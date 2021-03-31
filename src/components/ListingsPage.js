@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import Filter from "./Filter";
 import ListingDetail from "./ListingDetail";
 import ListingsContainer from "./ListingsContainer";
-import UserInfo from "./UserInfo";
 import { Grid } from 'semantic-ui-react'
 import Map from './Map.js'
 
@@ -23,7 +22,7 @@ const ListingsPage = ({user, setUser, listings, setListingSpotlight, handleLogou
 
     const squareFeetFilter = priceSort.filter(listing => {
         if (filterObj.squareFeet) {
-            return (listing.building_size.size ? listing.building_size.size : listing.communit.sqft_min) >= parseInt(filterObj.squareFeet)
+            return (listing.building_size.size ? listing.building_size.size : listing?.community?.sqft_min) >= parseInt(filterObj.squareFeet)
         }
         return true
     })
@@ -52,21 +51,16 @@ const ListingsPage = ({user, setUser, listings, setListingSpotlight, handleLogou
     
     return(
     <Grid>
-        <Grid.Row height={4}> 
-            <Grid.Column width={4}> 
-                <UserInfo 
-                    user={user} 
-                    handleLogout={handleLogout}/>
-            </Grid.Column>
-            <Grid.Column width={12}>
+        <Grid.Row height={2}> 
+            <Grid.Column width={16}>
                 <Filter 
                     listings={listings} 
                     filterObj={filterObj} 
                     setFilterObj={setFilterObj}
                     setZipcode={setZipcode}
-                    />
+                />
             </Grid.Column>
-        </Grid.Row>    
+        </Grid.Row>  
         <Grid.Row height={12}>
             <Grid.Column width={9}>
             <ListingsContainer 
@@ -85,8 +79,6 @@ const ListingsPage = ({user, setUser, listings, setListingSpotlight, handleLogou
         </Grid.Row>
 
         <ListingDetail/>
-
-  
 
     </Grid>
     )

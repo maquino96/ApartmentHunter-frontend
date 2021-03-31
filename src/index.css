@@ -32,4 +32,9 @@ code {
   min-height:183px;
   max-height: 183px;
   display: block; /* remove extra space below image */
+  cursor: pointer;
 }
+
+
+
+.pointer {cursor: pointer;}

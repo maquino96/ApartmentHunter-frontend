@@ -1,19 +1,42 @@
 import React from "react";
-import { Button, Card, Image, Icon } from "semantic-ui-react";
+import {Icon, Menu, Sidebar} from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 
-
-const UserInfo = ({user, handleLogout}) => {
-
-  let history = useHistory()
+const UserInfo = ({ user, handleLogout, visible, setVisible, handleUpdateForm}) => {
+  let history = useHistory();
 
   const sendToFavorites = () => {
-    console.log('clicked')
-    history.push('/favorites')
-  }
-  
+    console.log("clicked");
+    history.push("/favorites");
+  };
+
   return (
-    <Card>
+    <>
+      <Sidebar
+        as={Menu}
+        animation="overlay"
+        icon='labeled'
+        inverted
+        visible={visible}
+        vertical
+        width={'thin'}
+        onClick={()=>setVisible(!visible)}
+      >
+        <Menu.Item onClick={handleLogout} as="a">
+          <Icon name="log out" />
+          Log out
+        </Menu.Item>
+        <Menu.Item onClick={sendToFavorites} as="a">
+          <Icon name="star" />
+          Favorites
+        </Menu.Item>
+        <Menu.Item onClick={handleUpdateForm} as="a">
+          <Icon name="user circle" />
+          Update User Info
+        </Menu.Item>
+
+      </Sidebar>
+      {/* <Card>
       <Card.Content>
         <Image
           centered 
@@ -22,10 +45,6 @@ const UserInfo = ({user, handleLogout}) => {
           size="tiny"
         />
         <Card.Header>{user.name}</Card.Header>
-        {/* <Card.Meta>Friends of Elliot</Card.Meta>
-        <Card.Description>
-          Steve wants to add you to the group <strong>best friends</strong>
-        </Card.Description> */}
       </Card.Content>
       <Card.Content extra>
           <Button.Group vertical>
@@ -46,7 +65,8 @@ const UserInfo = ({user, handleLogout}) => {
             </Button>
           </Button.Group>
       </Card.Content>
-    </Card>
+    </Card> */}
+    </>
   );
 };
 

@@ -3,22 +3,33 @@ import LoginForm from "./LoginForm";
 import ListingsPage from "./ListingsPage";
 import { Container } from "semantic-ui-react";
 import { Switch, Route, useHistory } from "react-router-dom";
+import styled from "styled-components"
 import ListingDetail from "./ListingDetail";
 import Favorites from "./Favorites";
+import UserInfo from "./UserInfo";
+
+const SideIcon = styled.i`
+position: fixed;
+top: 10px;
+left: 0px;
+`
 
 function App() {
   const [listings, setListings] = useState([]);
   const [user, setUser] = useState({});
   const [listingSpotlight, setListingSpotlight] = useState({});
   const [zipcode, setZipcode] = useState(0)
-  const [ center, setCenter] = useState( { lat: 40.74113, lng: -73.98971 } )
+  const [center, setCenter] = useState( { lat: 40.74113, lng: -73.98971 } )
+  const [visible, setVisible] = useState(false)
+  const [userUpdate, setUserUpdate] = useState(false)
+  const [isHidden, setisHidden] = useState(true);
   let history = useHistory();
   // console.log(user);
 
   useEffect(() => {
 
     fetch(
-      `https://realtor.p.rapidapi.com/properties/v2/list-for-rent?limit=51&offset=2&postal_code=${zipcode ? zipcode : 10010}&sort=relevance`,
+      `https://realtor.p.rapidapi.com/properties/v2/list-for-rent?limit=30&offset=2&postal_code=${zipcode ? zipcode : 10010}&sort=relevance`,
       {
         method: "GET",
         headers: {
@@ -45,6 +56,7 @@ function App() {
 
   const handleLogout = () => {
     setUser({});
+    setVisible(!visible)
     history.push("/login");
   };
 
@@ -71,17 +83,38 @@ function App() {
         .then( r => r.json())
         .then( userRender => setUser(userRender))
       })
-
-
   }
 
+  const handleUpdateForm = () => {
+    history.push('/login')
+    setVisible(false)
+    setUserUpdate(true)
+  }
+
+
   return (
-    <div className="App">
-      <Container>
+    <div className="App" >
+      <SideIcon className="large bordered inverted black bars icon pointer" onClick={()=>setVisible(!visible)}></SideIcon>
+      <Container onClick={() => setVisible(false)}>
         <h1>APARTMENT//HUNTER</h1>
+        <UserInfo 
+                    visible={visible}
+                    setVisible={setVisible}
+                    user={user} 
+                    handleLogout={handleLogout}
+                    handleUpdateForm={handleUpdateForm}
+                />
         <Switch>
           <Route exact path="/login">
-            <LoginForm user={user} setUser={setUser} />
+            <LoginForm 
+              user={user} 
+              setUser={setUser} 
+              userUpdate={userUpdate}
+              setUserUpdate={setUserUpdate}
+              handleLogout={handleLogout}
+              isHidden={isHidden}
+              setisHidden={setisHidden}
+            />
           </Route>
           <Route exact path="/listingdetail">
             <ListingDetail

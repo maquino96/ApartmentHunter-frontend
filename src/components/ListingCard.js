@@ -25,6 +25,9 @@ const ListingCard = ({ user, setUser, listing, setListingSpotlight, removeFavori
 
   const handleFavorite = (event) => {
     event.preventDefault();
+    if (!user.name || user.name === "Guest") {
+      alert("You must be signed in to favorite listings!")
+    } else {
     console.log(user.id)
     fetch(`http://localhost:3000/listings`, {
       method: "POST",
@@ -59,22 +62,24 @@ const ListingCard = ({ user, setUser, listing, setListingSpotlight, removeFavori
         // this part maybe updating the User.... and preventing more favorites, investigate.
         // console.log('listing successfully created in DB')
       });
+    }
   };
 
   useEffect(()=>{
-
-    let prop_ids = user.favorites.map( favorite => parseInt(favorite.prop_id))
-    if (prop_ids.includes(parseInt(listing.listing_id))) {
-        setIsFavorite(true)  
+    if (user && user.favorites) {
+      let prop_ids = user.favorites.map( favorite => parseInt(favorite.prop_id))
+      if (prop_ids.includes(parseInt(listing.listing_id))) {
+          setIsFavorite(true)  
+      }
     }
 
 
-  },[])
+  },[listing.listing_id, user.favorites, user])
 
   return (
     <Card>
       <div className="image">
-        <img className='listcard-image'
+        <img className='listcard-image' 
           onClick={sendToDetail}
           src={
             listing.photo_count
@@ -90,7 +95,7 @@ const ListingCard = ({ user, setUser, listing, setListingSpotlight, removeFavori
           <i className="icon bed gray" />{" "}
           {/* {listing.community ? (listing.community.beds_min === 0 ? "Studio" : listing.community.beds_min + " Bed(s)") : (listing.beds === 0 ? "Studio" : listing.beds + " Bed(s)")} /{" "} */}
           {listing.beds || listing.beds === 0 ? (listing.beds === 0 ? "Studio" : listing.beds + " Bed(s)") : (listing.community.beds_min === 0 ? "Studio" : listing.community.beds_min + " Bed(s)")} /{" "}
-          <i className="icon bath gray" /> {(listing.baths || listing.baths_full && listing.baths)} Bath
+          <i className="icon bath gray" /> {(listing.baths && listing.baths)} Bath
         </span>
       </div>
 
@@ -98,7 +103,7 @@ const ListingCard = ({ user, setUser, listing, setListingSpotlight, removeFavori
         <span>
           <i className="icon dollar sign green" />
           {listing.price ? listing.price : listing.community.price_min}
-          <i className={isFavorite ? "icon star yellow" : "icon star"} onClick={isFavorite ? handleRemoveFavorite : handleFavorite} />
+          <i style={{ padding: '7px' }} className={isFavorite ? "icon star yellow" : "icon star"} onClick={isFavorite ? handleRemoveFavorite : handleFavorite} />
         </span>
       </div>
     </Card>
