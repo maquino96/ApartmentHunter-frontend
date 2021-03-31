@@ -103,7 +103,7 @@ const ListingCard = ({ user, setUser, listing, setListingSpotlight, removeFavori
         <span>
           <i className="icon dollar sign green" />
           {listing.price ? listing.price : listing.community.price_min}
-          <i className={isFavorite ? "icon star yellow" : "icon star"} onClick={isFavorite ? handleRemoveFavorite : handleFavorite} />
+          <i style={{ padding: '7px' }} className={isFavorite ? "icon star yellow" : "icon star"} onClick={isFavorite ? handleRemoveFavorite : handleFavorite} />
         </span>
       </div>
     </Card>

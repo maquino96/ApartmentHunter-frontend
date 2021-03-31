@@ -22,7 +22,7 @@ const ListingsPage = ({user, setUser, listings, setListingSpotlight, handleLogou
 
     const squareFeetFilter = priceSort.filter(listing => {
         if (filterObj.squareFeet) {
-            return (listing.building_size.size ? listing.building_size.size : listing.communit.sqft_min) >= parseInt(filterObj.squareFeet)
+            return (listing.building_size.size ? listing.building_size.size : listing?.community?.sqft_min) >= parseInt(filterObj.squareFeet)
         }
         return true
     })
