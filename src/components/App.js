@@ -7,6 +7,7 @@ import styled from "styled-components"
 import ListingDetail from "./ListingDetail";
 import Favorites from "./Favorites";
 import UserInfo from "./UserInfo";
+import {useLocation} from "react-router-dom"
 
 const SideIcon = styled.i`
 position: fixed;
@@ -24,6 +25,7 @@ function App() {
   const [userUpdate, setUserUpdate] = useState(false)
   const [isHidden, setisHidden] = useState(true);
   let history = useHistory();
+  let location = useLocation();
   // console.log(user);
 
   useEffect(() => {
@@ -34,7 +36,7 @@ function App() {
         method: "GET",
         headers: {
           "x-rapidapi-key":
-            "9be7cda230msh80b043bdb5786b7p11459ajsnd8086d8dfd11",
+            "c73b41d245msh20db0553e3da24dp1b8850jsn3db5de323bde",
           "x-rapidapi-host": "realtor.p.rapidapi.com",
         },
       }
@@ -57,6 +59,7 @@ function App() {
   const handleLogout = () => {
     setUser({});
     setVisible(!visible)
+    setUserUpdate(false)
     history.push("/login");
   };
 
@@ -94,7 +97,7 @@ function App() {
 
   return (
     <div className="App" >
-      <SideIcon className="large bordered inverted black bars icon pointer" onClick={()=>setVisible(!visible)}></SideIcon>
+      {location.pathname !== "/login" && <SideIcon className="large bordered inverted black bars icon pointer" onClick={()=>setVisible(!visible)}></SideIcon> }
       <Container onClick={() => setVisible(false)}>
         <h1>APARTMENT//HUNTER</h1>
         <UserInfo 

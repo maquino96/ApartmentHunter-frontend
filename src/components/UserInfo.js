@@ -24,7 +24,7 @@ const UserInfo = ({ user, handleLogout, visible, setVisible, handleUpdateForm}) 
       >
         <Menu.Item onClick={handleLogout} as="a">
           <Icon name="log out" />
-          Log out
+          {!user.name || user.name === "Guest" ? "Sign In" : "Log Out"}
         </Menu.Item>
         <Menu.Item onClick={sendToFavorites} as="a">
           <Icon name="star" />
