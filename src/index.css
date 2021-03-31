@@ -38,3 +38,50 @@ code {
 
 
 .pointer {cursor: pointer;}
+
+
+/* Light and Dark Mode */
+
+div.light {
+
+}
+
+div.dark {
+  background-color: #34526f;
+  height: 120vh;
+  width: 100%;  
+
+}
+
+div#segment-light {
+
+}
+
+div#segment-dark{
+  background-color: #dce0e6;
+
+}
+/* ludicrousMode Experiment */
+
+div.App {
+  background-image: url(./components/backgrounds/Ian-Red-Laser-Eyes.jpeg);
+  height: 120vh;
+  width: 100%;  
+}
+
+div.alt-app {
+  background-image: url(./components/backgrounds/chase-laser.png);
+  height: 100%;
+  width: 100%;
+}
+
+div#bgid{
+  background-image: url(./components/backgrounds/Ian-Red-Laser-Eyes.jpeg);  
+}
+
+div#alt-bgid{
+  background-image: url(./components/backgrounds/chase-laser.png);
+}
+
+
+

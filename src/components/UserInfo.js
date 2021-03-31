@@ -1,8 +1,8 @@
 import React from "react";
-import {Icon, Menu, Sidebar} from "semantic-ui-react";
+import {Icon, Menu, Sidebar, Checkbox} from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 
-const UserInfo = ({ user, handleLogout, visible, setVisible, handleUpdateForm}) => {
+const UserInfo = ({ user, handleLogout, visible, setVisible, handleUpdateForm, ludicrous, setLudicrous, lightMode, setLightMode, egg, setEgg}) => {
   let history = useHistory();
 
   const sendToFavorites = () => {
@@ -33,6 +33,15 @@ const UserInfo = ({ user, handleLogout, visible, setVisible, handleUpdateForm}) 
         <Menu.Item onClick={handleUpdateForm} as="a">
           <Icon name="user circle" />
           Update User Info
+        </Menu.Item>
+        <Menu.Item>
+          <Checkbox toggle onChange={()=>setLightMode(!lightMode)} />
+        </Menu.Item>
+        <Menu.Item>
+          <Checkbox toggle onChange={()=>setEgg(!egg)}/>
+        </Menu.Item>
+        <Menu.Item>
+          <Checkbox toggle onChange={()=>setLudicrous(!ludicrous)}/>
         </Menu.Item>
 
       </Sidebar>
