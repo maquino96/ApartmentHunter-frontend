@@ -1,10 +1,5 @@
 import React from "react";
-import {
-
-  Icon,
-  Menu,
-  Sidebar,
-} from "semantic-ui-react";
+import {Icon, Menu, Sidebar} from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 
 const UserInfo = ({ user, handleLogout, visible, setVisible}) => {

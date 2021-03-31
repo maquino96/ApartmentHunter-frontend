@@ -46,7 +46,7 @@ const ListingDetail = ({center, listingSpotlight, handleMarkerClick}) => {
       </Segment>
     ) } else {
         return (
-            <div> Error</div>
+            <div></div>
         )
     }
 
