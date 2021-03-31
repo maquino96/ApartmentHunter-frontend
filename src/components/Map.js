@@ -16,7 +16,7 @@ const Map = ({center, listings, handleMarkerClick}) => {
                 bootstrapURLKeys= {{key:
                     'AIzaSyCTanlrDJ66tlZ83se-DBlsAgRRf3xc-xQ'  }}
                     center={ center }
-                    defaultZoom={ 14 }    
+                    defaultZoom={ 15 }    
             >
 
                 {markers}
