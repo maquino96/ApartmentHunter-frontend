@@ -80,11 +80,9 @@ function App() {
   }
 
   const handleUpdateForm = () => {
-  
     history.push('/login')
+    setVisible(false)
     setUserUpdate(true)
-
-
   }
 
   return (

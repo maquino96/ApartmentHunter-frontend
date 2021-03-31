@@ -66,14 +66,17 @@ const LoginForm = ({ user, setUser, guest, setGuest, userUpdate, setUserUpdate, 
       body: JSON.stringify(formData),
     })
       .then((r) => r.json())
-      .then((user) => {
-        if (user.name) {
+      .then((renderUser) => {
+        if (renderUser.name) {
           setFormData({
             name: "",
             password: "",
           });
+        //   console.log(user)
           setisHidden(!isHidden);
-          alert("Thank you for signing up! Please login to continue");
+          alert("Thank you for signing up!")
+          setUser(renderUser)
+          history.push('/listings')
         } else {
           alert("Unable to create user");
         }
@@ -89,16 +92,19 @@ const LoginForm = ({ user, setUser, guest, setGuest, userUpdate, setUserUpdate, 
         body: JSON.stringify(formData),
       })
         .then((r) => r.json())
-        .then((user) => {
-          if (user.name) {
+        .then((renderUser) => {
+          if (renderUser.name) {
+            //   console.log(user)
             setFormData({
               name: "",
               password: "",
             });
             setUserUpdate(false)
-            handleLogout()
+            setUser(renderUser)
+            alert("Update has completed")
             setisHidden(true)
-            alert("Update has completed, please log back in.");
+            history.push('/listings')
+            
           } else {
             alert("Unable to update user");
           }
