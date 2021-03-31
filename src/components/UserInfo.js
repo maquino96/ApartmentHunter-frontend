@@ -36,12 +36,15 @@ const UserInfo = ({ user, handleLogout, visible, setVisible, handleUpdateForm, l
         </Menu.Item>
         <Menu.Item>
           <Checkbox toggle onChange={()=>setLightMode(!lightMode)} />
+          <div>{lightMode ? 'Dark Mode' : 'Light Mode'}</div>
         </Menu.Item>
         <Menu.Item>
           <Checkbox toggle onChange={()=>setEgg(!egg)}/>
+          <div></div>
         </Menu.Item>
         <Menu.Item>
           <Checkbox toggle onChange={()=>setLudicrous(!ludicrous)}/>
+          <div>{egg ? null : 'Red or Blue Bill' }</div>
         </Menu.Item>
 
       </Sidebar>
