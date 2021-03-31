@@ -7,7 +7,7 @@ import {
 } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 
-const UserInfo = ({ user, handleLogout, visible, setVisible}) => {
+const UserInfo = ({ user, handleLogout, visible, setVisible, handleUpdateForm}) => {
   let history = useHistory();
 
   const sendToFavorites = () => {
@@ -32,10 +32,10 @@ const UserInfo = ({ user, handleLogout, visible, setVisible}) => {
           Log out
         </Menu.Item>
         <Menu.Item onClick={sendToFavorites} as="a">
-          <Icon name="icon star" />
+          <Icon name="star" />
           Favorites
         </Menu.Item>
-        <Menu.Item as="a">
+        <Menu.Item onClick={handleUpdateForm} as="a">
           <Icon name="user circle" />
           Update User Info
         </Menu.Item>

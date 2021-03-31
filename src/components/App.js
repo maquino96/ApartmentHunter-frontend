@@ -15,6 +15,8 @@ function App() {
   const [zipcode, setZipcode] = useState(0)
   const [center, setCenter] = useState( { lat: 40.74113, lng: -73.98971 } )
   const [visible, setVisible] = useState(false)
+  const [userUpdate, setUserUpdate] = useState(false)
+  const [isHidden, setisHidden] = useState(true);
   let history = useHistory();
   // console.log(user);
 
@@ -77,6 +79,14 @@ function App() {
       })
   }
 
+  const handleUpdateForm = () => {
+  
+    history.push('/login')
+    setUserUpdate(true)
+
+
+  }
+
   return (
     <div className="App">
       <Container>
@@ -86,10 +96,19 @@ function App() {
                     setVisible={setVisible}
                     user={user} 
                     handleLogout={handleLogout}
+                    handleUpdateForm={handleUpdateForm}
                 />
         <Switch>
           <Route exact path="/login">
-            <LoginForm user={user} setUser={setUser} />
+            <LoginForm 
+              user={user} 
+              setUser={setUser} 
+              userUpdate={userUpdate}
+              setUserUpdate={setUserUpdate}
+              handleLogout={handleLogout}
+              isHidden={isHidden}
+              setisHidden={setisHidden}
+            />
           </Route>
           <Route exact path="/listingdetail">
             <ListingDetail
