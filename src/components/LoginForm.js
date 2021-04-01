@@ -112,7 +112,7 @@ const LoginForm = ({ user, setUser, guest, setGuest, userUpdate, setUserUpdate, 
   }
 
   return (
-    <div style={{padding: '5em'}}>
+    <div style={{padding: '3em'}}>
       {userUpdate ? (
         <div>
           <Form onSubmit={handleUpdateSubmit}>
