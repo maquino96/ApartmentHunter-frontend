@@ -44,7 +44,7 @@ const UserInfo = ({ user, handleLogout, visible, setVisible, handleUpdateForm, l
         </Menu.Item>
         <Menu.Item>
           <Checkbox toggle onChange={()=>setLudicrous(!ludicrous)}/>
-          <div>{egg ? null : 'Red or Blue Bill' }</div>
+          <div>{egg ? null : 'Red or Blue Pill' }</div>
         </Menu.Item>
 
       </Sidebar>
