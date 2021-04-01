@@ -7,8 +7,13 @@ import {useHistory} from 'react-router-dom'
 const ListingDetail = ({center, listingSpotlight, handleMarkerClick}) => {
     let history = useHistory();
 
+   
+
     
     if (listingSpotlight) {
+
+    let spotLightCenter = {lat: listingSpotlight.address.lat, lng: listingSpotlight.address.lon, url: listingSpotlight.rdc_web_url}
+
     return(
 
       <>
@@ -37,7 +42,7 @@ const ListingDetail = ({center, listingSpotlight, handleMarkerClick}) => {
             size='large' alt='map holder'/> */}
 
           <Map 
-            center={center}
+            center={spotLightCenter}
             listings={[listingSpotlight]}
             handleMarkerClick={handleMarkerClick}
             />
