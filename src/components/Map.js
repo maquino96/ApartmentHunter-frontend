@@ -14,7 +14,7 @@ const Map = ({center, listings, handleMarkerClick}) => {
         <div className='map'>
             <GoogleMapReact
                 bootstrapURLKeys= {{key:
-                    'AIzaSyCTanlrDJ66tlZ83se-DBlsAgRRf3xc-xQ'  }}
+                    `${process.env.REACT_APP_GOOGLE_MAPS_JAVASCRIPT_API_KEY}`}}
                     center={ center }
                     defaultZoom={ 15 }    
             >

@@ -11,7 +11,7 @@ function FavoriteItem({listing, photo, notes, id, removeFavorite, lightMode}) {
 
   const handleNotes = () => { 
     if(isNotes) {
-      fetch(`http://localhost:3000/favorites/${id}`, {
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/favorites/${id}`, {
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({notes: notesState})

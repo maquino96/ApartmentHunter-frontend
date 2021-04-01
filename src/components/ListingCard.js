@@ -29,7 +29,7 @@ const ListingCard = ({ user, setUser, listing, setListingSpotlight, removeFavori
       alert("You must be signed in to favorite listings!")
     } else {
     console.log(user.id)
-    fetch(`http://localhost:3000/listings`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/listings`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -52,7 +52,7 @@ const ListingCard = ({ user, setUser, listing, setListingSpotlight, removeFavori
         //   return updatedUser
         // })
 
-        fetch(`http://localhost:3000/users/${user.id}`)
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${user.id}`)
           .then( r => r.json())
           .then( userRender => setUser(userRender))
 

@@ -23,7 +23,7 @@ const LoginForm = ({ user, setUser, guest, setGuest, userUpdate, setUserUpdate, 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
 
-    fetch(`http://localhost:3000/users/login`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/users/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -42,7 +42,7 @@ const LoginForm = ({ user, setUser, guest, setGuest, userUpdate, setUserUpdate, 
   const handleGuestLogin = (event) => {
     event.preventDefault();
 
-    fetch(`http://localhost:3000/users/login`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/users/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: "Guest", password: "password" }),
@@ -60,7 +60,7 @@ const LoginForm = ({ user, setUser, guest, setGuest, userUpdate, setUserUpdate, 
   const handleSignupSubmit = (event) => {
     event.preventDefault();
 
-    fetch(`http://localhost:3000/users/signup`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/users/signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -86,7 +86,7 @@ const LoginForm = ({ user, setUser, guest, setGuest, userUpdate, setUserUpdate, 
   const handleUpdateSubmit = (event) => {
       event.preventDefault()
 
-      fetch(`http://localhost:3000/users/${user.id}`, {
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${user.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

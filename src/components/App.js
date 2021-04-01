@@ -39,7 +39,7 @@ function App() {
         method: "GET",
         headers: {
           "x-rapidapi-key":
-            "c73b41d245msh20db0553e3da24dp1b8850jsn3db5de323bde",
+            `${process.env.REACT_APP_REALTOR_API_KEY}`,
           "x-rapidapi-host": "realtor.p.rapidapi.com",
         },
       }
@@ -78,7 +78,7 @@ function App() {
 
   const removeFavorite = (id) => {
 
-    fetch(`http://localhost:3000/favorites/${id}`, {
+    fetch( `${process.env.REACT_APP_BACKEND_URL}/favorites/${id}`, {
       method: 'DELETE' 
     })
       .then( r=> r.json())
@@ -86,7 +86,7 @@ function App() {
         console.log(deleted)
         console.log('deleted') 
       
-        fetch(`http://localhost:3000/users/${user.id}`)
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${user.id}`)
         .then( r => r.json())
         .then( userRender => setUser(userRender))
       })
