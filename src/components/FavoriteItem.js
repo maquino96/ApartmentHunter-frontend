@@ -1,7 +1,7 @@
 import { Button, Item, TextArea, Form, Segment } from "semantic-ui-react";
 import {useState} from "react"
 
-function FavoriteItem({listing, photo, notes, id, removeFavorite}) {
+function FavoriteItem({listing, photo, notes, id, removeFavorite, lightMode}) {
   const [isNotes, setIsNotes] = useState(false)
   const [notesState, setNotesState] = useState(notes)
 
@@ -29,9 +29,9 @@ function FavoriteItem({listing, photo, notes, id, removeFavorite}) {
     <Item>
       {/* <Item.Image src="https://react.semantic-ui.com/images/wireframe/image.png" /> */}
       <Item.Image src={photo} onClick={handlePhotoClick}/>
-      <Item.Content>
-        <Item.Header as="a">{listing.address}</Item.Header>
-        <Item.Description>
+      <Item.Content >
+        <Item.Header as="a" style={{color: lightMode ? 'black' : 'white'}}>{listing.address}</Item.Header>
+        <Item.Description style={{color: lightMode ? 'black' : 'white'}}>
                 <div> Price: {listing.price}</div>
                 <div>Square feet: {listing.square_feet} sqft. </div>
                 <div> {listing.beds} Bed(s) // {listing.baths} Bath(s)</div>

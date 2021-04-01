@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, Button } from "semantic-ui-react";
+import { Form, Button, Divider, Grid, Segment } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 
 const LoginForm = ({ user, setUser, guest, setGuest, userUpdate, setUserUpdate, handleLogout, isHidden, setisHidden }) => {
@@ -112,7 +112,7 @@ const LoginForm = ({ user, setUser, guest, setGuest, userUpdate, setUserUpdate, 
   }
 
   return (
-    <div>
+    <div style={{padding: '5em'}}>
       {userUpdate ? (
         <div>
           <Form onSubmit={handleUpdateSubmit}>
@@ -126,6 +126,7 @@ const LoginForm = ({ user, setUser, guest, setGuest, userUpdate, setUserUpdate, 
                 onChange={updateForm}
               />
               <Form.Input
+                type="password"
                 label="Password"
                 placeholder="New Password"
                 name="password"
@@ -135,73 +136,99 @@ const LoginForm = ({ user, setUser, guest, setGuest, userUpdate, setUserUpdate, 
             </Form.Group>
             <Form.Button type="submit">Update</Form.Button>
           </Form>
-          <Button basic color="red" floated='right' onClick={() => history.push('./listings')}>Go Back</Button>
+          <Button
+            basic
+            color="red"
+            floated="right"
+            onClick={() => history.push("./listings")}
+          >
+            Go Back
+          </Button>
         </div>
       ) : (
-        <div>
-        {isHidden && (
-          <Form onSubmit={handleLoginSubmit} id="login-form" className="hidden">
-            <h2>Login</h2>
-            <Form.Group widths="equal">
-              <Form.Input
-                label="Name"
-                placeholder="Enter Name"
-                name="name"
-                value={formData.name}
-                onChange={updateForm}
-              />
-              <Form.Input
-                label="Password"
-                placeholder="Enter Password"
-                name="password"
-                value={formData.password}
-                onChange={updateForm}
-              />
-            </Form.Group>
-            <Form.Button type="submit">Login</Form.Button>
-          </Form>
-        )}
+        <div style={{
+          padding: '8em'  
+        }}>
+          <Segment placeholder>
+            <Grid columns={2} stackable testAlign="center">
+              <Divider vertical>Or</Divider>
+              <Grid.Row>
+                <Grid.Column>
+                  <div>
+                    {isHidden && (
+                      <Form
+                        onSubmit={handleLoginSubmit}
+                        id="login-form"
+                        className="hidden"
+                      >
+                        <h2>Login</h2>
+                        <Form.Group widths='equal'>
+                          <Form.Input
+                            label="Name"
+                            placeholder="Enter Name"
+                            name="name"
+                            value={formData.name}
+                            onChange={updateForm}
+                          />
+                          <Form.Input
+                            label="Password"
+                            placeholder="Enter Password"
+                            name="password"
+                            value={formData.password}
+                            onChange={updateForm}
+                          />
+                        </Form.Group>
+                        <Form.Button type="submit">Login</Form.Button>
+                      </Form>
+                    )}
 
-        {isHidden ? null : (
-          <Form onSubmit={handleSignupSubmit}>
-            <h2>Sign Up Form</h2>
-            <Form.Group widths="equal">
-              <Form.Input
-                label="Name"
-                placeholder="Desired Name"
-                name="name"
-                value={formData.name}
-                onChange={updateForm}
-              />
-              <Form.Input
-                label="Password"
-                placeholder="Desired Password"
-                name="password"
-                value={formData.password}
-                onChange={updateForm}
-              />
-            </Form.Group>
-            <Form.Button type="submit">Sign up</Form.Button>
-          </Form>
-        )}
+                    {isHidden ? null : (
+                      <Form onSubmit={handleSignupSubmit}>
+                        <h2>Sign Up Form</h2>
+                        <Form.Group widths="equal">
+                          <Form.Input
+                            label="Name"
+                            placeholder="Desired Name"
+                            name="name"
+                            value={formData.name}
+                            onChange={updateForm}
+                          />
+                          <Form.Input
+                            label="Password"
+                            placeholder="Desired Password"
+                            name="password"
+                            value={formData.password}
+                            onChange={updateForm}
+                          />
+                        </Form.Group>
+                        <Form.Button type="submit">Sign up</Form.Button>
+                      </Form>
+                    )}
+                  </div>
+                </Grid.Column>
 
-        <br></br>
-        {isHidden && (
-          <Button primary onClick={() => setisHidden(!isHidden)}>
-            Sign Up Form
-          </Button>
-        )}
-        {isHidden ? null : (
-          <Button secondary onClick={() => setisHidden(!isHidden)}>
-            Back to Login
-          </Button>
-        )}
+                <Grid.Column>
+                  <div>
+                    {isHidden && (
+                      <Button primary onClick={() => setisHidden(!isHidden)}>
+                        Sign Up Form
+                      </Button>
+                    )}
+                    {isHidden ? null : (
+                      <Button secondary onClick={() => setisHidden(!isHidden)}>
+                        Back to Login
+                      </Button>
+                    )}
 
-        <br></br>
-        <br></br>
-        <Button onClick={handleGuestLogin}> Guest </Button>
-      </div>
-        
+                    <br></br>
+                    <br></br>
+                    <Button onClick={handleGuestLogin}> Guest </Button>
+                  </div>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Segment>
+        </div>
       )}
     </div>
   );

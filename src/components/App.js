@@ -63,6 +63,7 @@ function App() {
     setUser({});
     setVisible(!visible)
     setUserUpdate(false)
+    setLightMode(true)
     history.push("/login");
   };
 
@@ -95,14 +96,15 @@ function App() {
     history.push('/login')
     setVisible(false)
     setUserUpdate(true)
+    setLightMode(true)
   }
 
 
   return (
     <div className={ egg ? (lightMode ? 'light' : 'dark' ) : (ludicrous ? "App" : 'alt-app')}  id={ ludicrous ? 'background-id' : 'work'} >
-      {location.pathname !== "/login" && <SideIcon className="big bordered inverted black bars icon pointer" style={{marginLeft: '0.5em'}} onClick={()=>setVisible(!visible)}></SideIcon> }
+      {location.pathname !== "/login" && <SideIcon className="big bordered inverted black bars icon pointer" style={{marginLeft: '1em', marginTop: '.5em'}} onClick={()=>setVisible(!visible)}></SideIcon> }
       <Container onClick={() => setVisible(false)}>
-        <h1 style={{color: lightMode ? 'black':'white', fontSize: '4em'}}>APARTMENT//HUNTER</h1>
+        <h1 style={{color: lightMode ? 'black':'white', fontSize: '4em', padding: '0.5em'}}>APARTMENT//HUNTER</h1>
         <UserInfo 
                     visible={visible}
                     setVisible={setVisible}
@@ -155,7 +157,8 @@ function App() {
           <Route exact path="/favorites">
             <Favorites 
             favorites={user.favorites}
-            removeFavorite={removeFavorite} />
+            removeFavorite={removeFavorite}
+            lightMode={lightMode} />
           </Route>
           <Route exact path="/">
             <h1>Please login or sign up</h1>

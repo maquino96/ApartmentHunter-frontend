@@ -50,7 +50,7 @@ const ListingsPage = ({user, setUser, listings, setListingSpotlight, handleLogou
     })
     
     return(
-    <Grid>
+    <Grid style={{padding:'.5em'}}>
         <Grid.Row height={2}> 
             <Grid.Column width={16}>
                 <Filter 
