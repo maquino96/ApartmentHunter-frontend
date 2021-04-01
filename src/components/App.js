@@ -33,6 +33,8 @@ function App() {
 
   useEffect(() => {
 
+    document.title='APARTMENT//HUNTER'
+
     fetch(
       `https://realtor.p.rapidapi.com/properties/v2/list-for-rent?limit=30&offset=2&postal_code=${zipcode ? zipcode : 10010}&sort=relevance`,
       {
