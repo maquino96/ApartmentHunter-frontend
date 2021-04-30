@@ -9,7 +9,7 @@ Features include:
 * Users can sort and filter through the listings based off price, rooms available, bathrooms, available, and square footage. 
 * Users can add listings to favorites and input notes for each listing that they add.
 * A listing card can be clicked on for more information.
-* Any of the markers can be clicked on to open a new window for the listing on Realtor.com will be opened. 
+* Any of the markers can be clicked on to open a new window where the user will be taken to the listing on Realtor.com
 * Lightmode + Darkmode 
 
 <!-- This was my first project with React and I gained a lot of comfortability with using Semantic UI from this experience. Previously I had used Bulma, another css framework where you would update class names and connect to the framework via a CDN link in the html file. Semantic brought a slew of prestyled components that sped up the development process. This was also the first time using an API from the Google Cloud Platform. It was everything you expected from Google and more, they have hundreds of API Libraries and other services under that platform. I would need a few days to sift through all the functionality. I pretty happy about the outcome of the app but like with most first time projects there were challenges and some bugs that still need to be fixed.
