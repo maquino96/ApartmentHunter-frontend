@@ -172,6 +172,7 @@ const LoginForm = ({ user, setUser, guest, setGuest, userUpdate, setUserUpdate, 
                           />
                           <Form.Input
                             label="Password"
+                            type="password"
                             placeholder="Enter Password"
                             name="password"
                             value={formData.password}
